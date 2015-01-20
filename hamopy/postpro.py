@@ -19,7 +19,7 @@
 
 from scipy.interpolate import interp1d
 import numpy  as np
-from hamopy import ham_library as ham
+#from . import ham_library as ham
 
 def distribution(result, var, x = None, t = None):
     """
@@ -42,7 +42,7 @@ def distribution(result, var, x = None, t = None):
         
     except KeyError:
         
-        print "The key %s is not in the dictionary of results" % var
+        print("The key %s is not in the dictionary of results" % var)
         return np.array([])
     
     # Distribution of 'var' at the time 't' on all nodes of the mesh
@@ -72,7 +72,7 @@ def evolution(result, var, x, t = None):
         
     except KeyError:
         
-        print "The key %s is not in the dictionary of results" % var
+        print("The key %s is not in the dictionary of results" % var)
         return np.array([])
     
     # Evolution of 'var' at the location x at all time steps of the simulation

@@ -20,7 +20,7 @@
 from __future__ import division
 
 import numpy as np
-import ham_library as ham
+#from . import ham_library as ham
 import copy
 
 from scipy.sparse.linalg import spsolve

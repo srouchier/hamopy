@@ -19,6 +19,6 @@
 
 __author__ = "Simon Rouchier"
 
-from algorithm import calcul, calcul_thermo
-import postpro
-import ham_library as ham
+from .algorithm import calcul, calcul_thermo
+from . import postpro
+from . import ham_library as ham
