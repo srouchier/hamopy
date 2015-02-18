@@ -20,7 +20,7 @@
 from __future__ import division
 
 import numpy as np
-#from . import ham_library as ham
+from . import ham_library as ham
 import copy
 
 from scipy.sparse.linalg import spsolve
@@ -37,21 +37,21 @@ def initialisation(init, mesh, clim, thermo = False):
     This function is called by hamopy.hamopy1D.calcul only
     """
     
-    if init.has_key('x'):
+    if 'x' in init.keys():
         # The domain is initialised with non-uniform values of P and T
         
         f_t = interp1d(init['x'], init['T'], 'linear')
         T   = f_t(mesh.x)
         
-        if init.has_key('HR'):
+        if 'HR' in init.keys():
             f_p = interp1d(init['x'], init['HR'], 'linear')
             HR  = f_p(mesh.x)
             P   = ham.p_c(HR, T)
-        elif init.has_key('PV'):
+        elif 'PV' in init.keys():
             f_p = interp1d(init['x'], init['PV'], 'linear')
             HR  = f_p(mesh.x) / ham.p_sat(T)
             P   = ham.p_c(HR, T)
-        elif init.has_key('PC'):
+        elif 'PC' in init.keys():
             f_p = interp1d(init['x'], np.log10(-init['PC']), 'linear')
             P   = 10 ** f_p(mesh.x)
         
@@ -60,12 +60,12 @@ def initialisation(init, mesh, clim, thermo = False):
         
         T = init['T'] * np.ones(mesh.nbr_nodes)
         
-        if init.has_key('HR'):
+        if 'HR' in init.keys():
             P = ham.p_c(init['HR'], init['T']) * np.ones(mesh.nbr_nodes)
-        elif init.has_key('PV'):
+        elif 'PV' in init.keys():
             HR = init['PV'] / ham.p_sat(init['T'])
             P  = ham.p_c(HR, init['T']) * np.ones(mesh.nbr_nodes)
-        elif init.has_key('PC'):
+        elif 'PC' in init.keys():
             P = init['PC'] * np.ones(mesh.nbr_nodes)
     
     if thermo == True:

@@ -19,7 +19,7 @@
 
 from scipy.interpolate import interp1d
 import numpy  as np
-#from . import ham_library as ham
+from . import ham_library as ham
 
 def distribution(result, var, x = None, t = None):
     """
@@ -131,7 +131,7 @@ def surface_heat_flow(result, mesh, clim, side, t = None, total = False):
     q_cond  = lambda_ * (T_surf-T_surf2) / np.abs(x-x2)
     
     # In case of pure thermal calculation, we stop here
-    if not result.has_key('PV'):
+    if 'PV' not in result.keys():
         
         q_conv = 0.
         
@@ -195,7 +195,7 @@ def heat_flow(result, mesh, clim, x, t = None, total = False):
     q_cond  = lambda_ * (T1-T2) / np.abs(x1-x2)
     
     # In case of pure thermal calculation, we stop here
-    if not result.has_key('PV'):
+    if 'PV' not in result.keys():
         
         q_conv = 0.
         
@@ -256,7 +256,7 @@ def surface_heat_flow_out(result, mesh, clim, side, t = None):
     q_cond  = clim[i].h_t(t) * ( clim[i].T_eq(t) - T_surf )
     
     # In case of pure thermal calculation, we stop here
-    if not result.has_key('PV'):
+    if 'PV' not in result.keys():
         
         q_evap = 0
         q_rain = 0
