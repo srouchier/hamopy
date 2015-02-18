@@ -21,7 +21,7 @@ from __future__ import division
 
 import numpy  as np
 import pandas as pd
-import ham_library as ham
+from . import ham_library as ham
 
 from pylab             import sqrt
 from scipy.interpolate import interp1d
@@ -857,14 +857,14 @@ class Boundary:
     def __init__(self, method='Fourier', **kwargs):
         
         # kwargs must have a 'T' key, and either 'HR' or 'p_v'
-        ok = kwargs.has_key('T') and (kwargs.has_key('HR') or kwargs.has_key('p_v'))
+        ok = 'T' in kwargs.keys() and 'HR' in kwargs.keys() or 'p_v' in kwargs.keys()
         if not ok:
             raise Exception('T and HR or p_v must be given in the boundary definition')
         
-        if kwargs.has_key('file'):
+        if 'file' in kwargs.keys():
 
-            if kwargs.has_key('time'):
-                if not kwargs.has_key('delimiter'):
+            if 'time' in kwargs.keys():
+                if 'delimiter' not in kwargs.keys():
                     data0 = pd.read_csv(kwargs['file'], delimiter='\t')
                     del kwargs['file']
                 else:
@@ -882,47 +882,48 @@ class Boundary:
                     kwargs_new[key] = np.array( data0[kwargs[key]] )
                 else:
                     kwargs_new[key] = kwargs[key] * np.ones(taille_du_fichier)
-                
-            Celsius = kwargs_new['T'][0] < 200
-            
+
         else:
-            # All values are constant
+            # All values are constant or given in the initial dictionary
             kwargs_new = kwargs
-            Celsius = kwargs_new['T'] < 200
+        
+        # Celsius = kwargs_new['T'].mean() < 200
     
         
         # If T has been given in C, it is switched to K
+        """
         if Celsius:
             kwargs_new['T'] += 273.15
-            if kwargs_new.has_key('T_eq'):
+            if 'T_eq' in kwargs_new.keys():
                 kwargs_new['T_eq'] += 273.15
+        """
         
         # If no equivalent temperature is given, it is set to that of air
-        if not kwargs_new.has_key('T_eq'):
+        if 'T_eq' not in kwargs_new.keys():
             kwargs_new['T_eq'] = kwargs_new['T']
             
         # If no rain is given, the value of g_l is 0
-        if not kwargs_new.has_key('g_l'):
+        if 'g_l' not in kwargs_new.keys():
             kwargs_new['g_l'] = 0.
         
         # If HR is not given, p_v is expected
-        if not kwargs_new.has_key('HR'):
+        if 'HR' not in kwargs_new.keys():
             kwargs_new['HR'] = kwargs_new['p_v'] / ham.p_sat(kwargs_new['T'])
         
         # If p_v is not given, HR is expected
-        if not kwargs_new.has_key('p_v'):
+        if 'p_v' not in kwargs_new.keys():
             kwargs_new['p_v'] = kwargs_new['HR'] * ham.p_sat(kwargs_new['T'])
         
         # If h_t is not given, default value is 5 W/m2K
-        if not kwargs_new.has_key('h_t'):
+        if 'h_t' not in kwargs_new.keys():
             kwargs_new['h_t'] = 5.
         
         # If h_m is not given, default value is 7.45e-9 * h_t
-        if not kwargs_new.has_key('h_m'):
+        if 'h_m' not in kwargs_new.keys():
             kwargs_new['h_m'] = 7.45e-9 * kwargs_new['h_t']
         
         # If no air pressure is given, the value of P_air is 0
-        if not kwargs_new.has_key('P_air'):
+        if 'P_air' not in kwargs_new.keys():
             kwargs_new['P_air'] = 0.
          
         if method == 'Dirichlet':
@@ -931,7 +932,7 @@ class Boundary:
         
         self.type = method
         self.data = kwargs_new
-        self.constant = not self.data.has_key('time')
+        self.constant = not 'time' in self.data.keys()
         
     def has_constant(self, var):
         return isinstance(self.data[var], float) or isinstance(self.data[var], int)
@@ -1040,17 +1041,17 @@ class Time:
         
         if method == 'variable':
             
-            if kwargs.has_key('iter_max'):
+            if 'iter_max' in kwargs.keys():
                 self.iter_max = kwargs['iter_max']
             else:
                 self.iter_max = 12
                 
-            if kwargs.has_key('delta_min'):
+            if 'delta_min' in kwargs.keys():
                 self.delta_min = kwargs['delta_min']
             else:
                 self.delta_min = 1e-3
             
-            if kwargs.has_key('delta_max'):
+            if 'delta_max' in kwargs.keys():
                 self.delta_max = kwargs['delta_max']
             else:
                 self.delta_max = 900
