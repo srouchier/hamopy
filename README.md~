@@ -9,11 +9,15 @@ The original field of application is the hygrothermal modelling of building mate
 Hamopy makes good use of its open-source nature, and gives users complete control over the simulation process. One can:
 
 * add new materials and customise the equations defining their properties,
+
 * account for water flow and storage in both liquid and vapor states,
+
 * include time-dependent boundary conditions,
+
 * work with fully coupled hygrothermal transfer, or with thermal transfer only (saves time),
+
 * easily automate many simulations for sensitivity analyses, evolutionary algorithms and such.
 
-The documentation is available here: http://srouchier.github.io/hamopy/
+The documentation is available here: http://code.google.com/p/hamopy
 
 Any contribution into improving hamopy is welcome, as to make open-source HAM modelling available and understandable by all.

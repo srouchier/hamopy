@@ -1,0 +1,17 @@
+site_name: hamopy - Heat, Air and Moisture transfer in Python
+repo_url: https://github.com/srouchier/hamopy
+size_author: Simon Rouchier
+pages:
+- Home: 'index.md'
+- User guide:
+    - Input definition: 'user-guide/inputs.md'
+    - Materials: 'user-guide/materials.md'
+    - Boundary conditions: 'user-guide/boundary.md'
+    - Simulation: 'user-guide/simulation.md'
+    - Library: 'user-guide/library.md'
+    - Post-processing: 'user-guide/post-processing.md'
+    - Example: 'user-guide/example.md'
+- About:
+    - Author: 'about/author.md'
+    - License: 'about/license.md'
+theme: spacelab
