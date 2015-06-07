@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+	<title>Library - hamopy - Heat, Air and Moisture transfer in Python</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">hamopy - Heat, Air and Moisture transfer in Python</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">User guide <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../inputs/">Input definition</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../materials/">Materials</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../boundary/">Boundary conditions</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../simulation/">Simulation</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Library</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../post-processing/">Post-processing</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../example/">Example</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../about/author/">Author</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../about/license/">License</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../simulation/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../post-processing/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/srouchier/hamopy">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#library-of-functions">Library of functions</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="library-of-functions">Library of functions</h1>
+<p>All material-independant values, universal constants and state equations are stored within the <code>hamopy/ham_library</code> file. In addition to constant properties such as the latent heat of evaporation, the universal gas constant and the thermal conductivity of air, the file includes 5 useful methods:</p>
+<ul>
+<li><code>p_sat(T)</code>: Water vapor saturation pressure (Pa)</li>
+<li><code>D_va(T)</code>: Water vapor diffusivity in air (m2/s)</li>
+<li><code>p_v(p_c, T)</code>: Water vapor pressure (Pa)</li>
+<li><code>HR(p_c, T)</code>: Relative humidity</li>
+<li><code>p_c(HR, T)</code>: Capillary pressure (Pa)</li>
+</ul>
+<p>The last three methods are equivalent formulations of the Clausius-Clapeyron equation. It is used to calculate the relative humidity from values of the capillary pressure, and inversely.</p>
+<p>Here is an example of use:</p>
+<pre><code>from hamopy import ham_library as ham
+
+ham.cp_liq
+ham.p_sat(280)
+ham.p_c(0.92, 299)
+</code></pre>
+<p>This script first returns the value of the liquid water specific heat, then the water vapor saturation pressure at 280 K, then the capillary pressure at 92 %RH and 299 K.</p>
+<p><a href="../..">Documentation main page</a></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
