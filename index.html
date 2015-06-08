@@ -183,7 +183,12 @@
 </ul>
 <p>Any contribution into improving hamopy is welcome, as to make open-source HAM modelling available and understandable by all.</p>
 <h2 id="installation">Installation</h2>
-<p>You can download and install hamopy by cloning the <a href="https://github.com/srouchier/hamopy">GitHub repository</a>.</p>
+<p>The easiest way to install hamopy is through Pip:</p>
+<pre><code>$ pip install hamopy
+</code></pre>
+<p>You can also clone the <a href="https://github.com/srouchier/hamopy">GitHub repository</a>, then either include its path in the appropriate environment variable, or run</p>
+<pre><code>$ python setup.py install
+</code></pre>
 <h2 id="how-things-work">How things work</h2>
 <p>This is basically how a simulation is run:</p>
 <pre><code>from hamopy.algorithm import calcul
