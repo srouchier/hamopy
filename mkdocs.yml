@@ -10,7 +10,9 @@ pages:
     - Simulation: 'user-guide/simulation.md'
     - Library: 'user-guide/library.md'
     - Post-processing: 'user-guide/post-processing.md'
-    - Example: 'user-guide/example.md'
+- Examples:
+    - Hamstad BM3: 'examples/Hamstad_BM3.md'
+    - Hamstad BM5: 'examples/Hamstad_BM5.md'
 - About:
     - Author: 'about/author.md'
     - License: 'about/license.md'

@@ -10,7 +10,7 @@ from hamopy.materials.hamstad import BM4_load, BM4_finishing
 # Add the liquid permeability to the load material
 import pandas as pd
 import numpy  as np
-k_file = 'D:\MCF\Simulation\Python\Hamstad\BM4 Perm.txt'
+k_file = 'BM4 Perm.txt'
 dataK = pd.read_csv(k_file, delimiter='\t')
 PC = -10**( np.array(dataK['log(Psuc)']) )
 KL =  10**( np.array(dataK['log(K)']) )

@@ -1,6 +1,10 @@
-This scipt simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.
+# Hamstad BM3
+
+This script simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.
 
 Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled `Time (s)` and `DeltaP`. This file is available in the `hamopy/benchmarks` folder
+
+## Script
 
 	from hamopy.classes import Mesh, Boundary, Time
 
@@ -84,4 +88,6 @@ Note that the external air pressure fluctuates on one side of the domain, and th
 	    fig = plt.gcf()
 	    fig.savefig('BM3_results.png', format='png', dpi = 300)
 
+## Results
 
+![BM3 results](BM3_results.png)
