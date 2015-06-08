@@ -37,5 +37,8 @@ Of course, some questions remain unanswered, which is what this page is for.
 * [Simulation](user-guide/simulation.md): some options to customise and monitor the simulation
 	* [Library](user-guide/library.md): small library of useful functions within hamopy 
 * [Post-processing](user-guide/post-processing.md): how to visualise results
-* Example: full example of a working script 
+
+## Examples
+
+* [Hamstad BM 3](examples/Hamstad_BM3.md): 3rd benchmark exercise of the Hamstad package
 

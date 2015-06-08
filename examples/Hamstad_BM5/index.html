@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Library - hamopy - Heat, Air and Moisture transfer in Python</title>
+	<title>Hamstad BM5 - hamopy - Heat, Air and Moisture transfer in Python</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,32 +56,32 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User guide <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../inputs/">Input definition</a>
+                            <a href="../../user-guide/inputs/">Input definition</a>
                         </li>
                     
                         <li >
-                            <a href="../materials/">Materials</a>
+                            <a href="../../user-guide/materials/">Materials</a>
                         </li>
                     
                         <li >
-                            <a href="../boundary/">Boundary conditions</a>
+                            <a href="../../user-guide/boundary/">Boundary conditions</a>
                         </li>
                     
                         <li >
-                            <a href="../simulation/">Simulation</a>
-                        </li>
-                    
-                        <li class="active">
-                            <a href="./">Library</a>
+                            <a href="../../user-guide/simulation/">Simulation</a>
                         </li>
                     
                         <li >
-                            <a href="../post-processing/">Post-processing</a>
+                            <a href="../../user-guide/library/">Library</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../user-guide/post-processing/">Post-processing</a>
                         </li>
                     
                     </ul>
@@ -89,16 +89,16 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../examples/Hamstad_BM3/">Hamstad BM3</a>
+                            <a href="../Hamstad_BM3/">Hamstad BM3</a>
                         </li>
                     
-                        <li >
-                            <a href="../../examples/Hamstad_BM5/">Hamstad BM5</a>
+                        <li class="active">
+                            <a href="./">Hamstad BM5</a>
                         </li>
                     
                     </ul>
@@ -127,12 +127,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../simulation/">
+                    <a rel="next" href="../Hamstad_BM3/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../post-processing/">
+                    <a rel="prev" href="../../about/author/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -155,32 +155,112 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#library-of-functions">Library of functions</a></li>
+        <li class="main active"><a href="#hamstad-bm5">Hamstad BM5</a></li>
+        
+            <li><a href="#script">Script</a></li>
+        
+            <li><a href="#results">Results</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="library-of-functions">Library of functions</h1>
-<p>All material-independant values, universal constants and state equations are stored within the <code>hamopy/ham_library</code> file. In addition to constant properties such as the latent heat of evaporation, the universal gas constant and the thermal conductivity of air, the file includes 5 useful methods:</p>
-<ul>
-<li><code>p_sat(T)</code>: Water vapor saturation pressure (Pa)</li>
-<li><code>D_va(T)</code>: Water vapor diffusivity in air (m2/s)</li>
-<li><code>p_v(p_c, T)</code>: Water vapor pressure (Pa)</li>
-<li><code>HR(p_c, T)</code>: Relative humidity</li>
-<li><code>p_c(HR, T)</code>: Capillary pressure (Pa)</li>
-</ul>
-<p>The last three methods are equivalent formulations of the Clausius-Clapeyron equation. It is used to calculate the relative humidity from values of the capillary pressure, and inversely.</p>
-<p>Here is an example of use:</p>
-<pre><code>from hamopy import ham_library as ham
+<h1 id="hamstad-bm5">Hamstad BM5</h1>
+<p>This script simulates the fifth exercise of the Hamstad benchmark package: multi-layered wall with capillary active inside insulation</p>
+<p>Since hamopy is not really speed-optimised, this may take a few minutes to compute.</p>
+<h2 id="script">Script</h2>
+<pre><code>"""
+5th exercise of the Hamstad benchmark package
 
-ham.cp_liq
-ham.p_sat(280)
-ham.p_c(0.92, 299)
+Capillary active inside insulation
+"""
+
+from hamopy.classes import Mesh, Boundary, Time
+
+# Choice of materials and geometry
+from hamopy.materials.hamstad import BM5_brick, BM5_mortar, BM5_insulation
+
+mesh = Mesh(**{"materials"    : [BM5_brick, BM5_mortar, BM5_insulation],
+           "sizes"        : [0.365, 0.015, 0.040],
+           "nbr_elements" : [100, 20, 20] })
+
+# Boundary conditions
+clim1 = Boundary('Fourier',**{"T"   : 273.15,
+                          "HR"  : 0.8,
+                          "h_t" : 25.,
+                          "h_m" : 1.8382e-7 })
+
+clim2 = Boundary('Fourier',**{"T"   : 293.15,
+                          "HR"  : 0.6,
+                          "h_t" : 8.,
+                          "h_m" : 5.8823e-8 })
+
+clim = [clim1, clim2]
+
+# Initial conditions
+init = {'T'  : 298.15,
+    'HR' : 0.6}
+
+# Time step size
+time = Time('variable',**{"delta_t"  : 900,
+                      "t_max"    : 12960000,
+                      "iter_max" : 12,
+                      "delta_min": 1e-3,
+                      "delta_max": 900 } )
+
+if __name__ == "__main__":
+
+    import numpy as np
+
+    # Calculation
+    from hamopy.algorithm import calcul
+    result = calcul(mesh, clim, init, time)
+
+    # Post processing
+    from hamopy.postpro import distribution
+
+    t_plot = 12960000
+    x_plot = np.linspace(0, 0.42, 421)
+
+    from hamopy import ham_library as ham
+
+    Temperature = distribution(result, 'T', x_plot, t_plot)
+    Humidity    = distribution(result, 'HR', x_plot, t_plot)
+    Moisture    = np.zeros(np.shape(Temperature))
+
+    # Moisture content distribution of each layer
+    for i in range(len(mesh.materials)):
+    xmin = sum(mesh.sizes[0:i])
+    xmax = sum(mesh.sizes[0:i+1])
+    mask = ((x_plot &gt;= xmin) &amp; (x_plot &lt;= xmax))
+    Moisture[mask] = mesh.materials[i].w(ham.p_c(Humidity[mask],Temperature[mask]), Temperature[mask])
+
+    # Plotting results
+
+    import matplotlib.pylab as plt
+    from matplotlib import rc
+    rc("font", family="serif", size=12)
+
+    figsize(6, 8)
+
+    ax = plt.subplot(211)
+
+    plt.plot(x_plot[300:], Humidity[300:], 'k-', linewidth=2)
+    plt.xlabel('x (m)')
+    plt.ylabel('Relative humidity')
+
+    ax = plt.subplot(212)
+
+    plt.plot(x_plot[300:], Moisture[300:], 'k-', linewidth=2)
+    plt.xlabel('x (m)')
+    plt.ylabel('Moisture content (kg/m3)')
+
+    fig = plt.gcf()
+    fig.savefig('BM5_results.png', format='png', dpi = 300)
 </code></pre>
-<p>This script first returns the value of the liquid water specific heat, then the water vapor saturation pressure at 280 K, then the capillary pressure at 92 %RH and 299 K.</p>
-<p><a href="../..">Documentation main page</a></p></div>
+<h2 id="results">Results</h2>
+<p><img alt="BM5 results" src="../BM5_results.png" /></p></div>
         </div>
 
         <footer class="col-md-12">

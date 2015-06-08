@@ -1,6 +1,10 @@
-This scipt simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.
+# Hamstad BM3
 
-Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled `Time (s)` and `DeltaP`
+This script simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.
+
+Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled `Time (s)` and `DeltaP`. This file is available in the `hamopy/benchmarks` folder
+
+## Script
 
 	from hamopy.classes import Mesh, Boundary, Time
 
@@ -12,7 +16,7 @@ Note that the external air pressure fluctuates on one side of the domain, and th
 		       "nbr_elements" : [40] })
 
 	# Boundary conditions
-	clim_file = 'D:\location\BM3 climate.txt'
+	clim_file = 'BM3 climate.txt'
 
 	clim1 = Boundary('Fourier',**{"file"      : clim_file,
 		                      "time"      : "Time (s)",
@@ -59,4 +63,30 @@ Note that the external air pressure fluctuates on one side of the domain, and th
 	    Temperature     = np.column_stack([evolution(results, 'T', _, t_out) for _ in x_out])
 	    Humidity        = np.column_stack([evolution(results, 'HR', _, t_out) for _ in x_out])
 	    MoistureContent = BM3.w(ham.p_c(Humidity, Temperature), Temperature)
+	    # Plotting results
+	    
+	    import matplotlib.pylab as plt
+	    from matplotlib import rc
+	    rc("font", family="serif", size=12)
+	    
+	    figsize(6, 8)
 
+	    ax = plt.subplot(211)
+	    
+	    plt.plot(t_plot / (24*3600), Temperature)
+	    plt.xlabel('Time (days)')
+	    plt.ylabel('Temperature (C)')
+	    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+	    
+	    ax = plt.subplot(212)
+	    
+	    plt.plot(t_plot / (24*3600), MoistCont)
+	    plt.xlabel('Time (days)')
+	    plt.ylabel('Moisture content (kg/m3)')
+	    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+	    
+	    fig = plt.gcf()
+	    fig.savefig('BM3_results.png', format='png', dpi = 300)
+
+## Results
+![BM3 results](BM3_results.png)

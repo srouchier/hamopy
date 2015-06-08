@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
 
-	<title>Example - hamopy - Heat, Air and Moisture transfer in Python</title>
+	<title>Hamstad BM3 - hamopy - Heat, Air and Moisture transfer in Python</title>
 
         <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -56,36 +56,49 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">User guide <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../inputs/">Input definition</a>
+                            <a href="../../user-guide/inputs/">Input definition</a>
                         </li>
                     
                         <li >
-                            <a href="../materials/">Materials</a>
+                            <a href="../../user-guide/materials/">Materials</a>
                         </li>
                     
                         <li >
-                            <a href="../boundary/">Boundary conditions</a>
+                            <a href="../../user-guide/boundary/">Boundary conditions</a>
                         </li>
                     
                         <li >
-                            <a href="../simulation/">Simulation</a>
+                            <a href="../../user-guide/simulation/">Simulation</a>
                         </li>
                     
                         <li >
-                            <a href="../library/">Library</a>
+                            <a href="../../user-guide/library/">Library</a>
                         </li>
                     
                         <li >
-                            <a href="../post-processing/">Post-processing</a>
+                            <a href="../../user-guide/post-processing/">Post-processing</a>
                         </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
                     
                         <li class="active">
-                            <a href="./">Example</a>
+                            <a href="./">Hamstad BM3</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../Hamstad_BM5/">Hamstad BM5</a>
                         </li>
                     
                     </ul>
@@ -114,12 +127,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../post-processing/">
+                    <a rel="next" href="../../user-guide/post-processing/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../about/author/">
+                    <a rel="prev" href="../Hamstad_BM5/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -142,12 +155,21 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
+        <li class="main active"><a href="#hamstad-bm3">Hamstad BM3</a></li>
+        
+            <li><a href="#script">Script</a></li>
+        
+            <li><a href="#results">Results</a></li>
+        
+    
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<p>This scipt simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.</p>
-<p>Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled <code>Time (s)</code> and <code>DeltaP</code></p>
+<h1 id="hamstad-bm3">Hamstad BM3</h1>
+<p>This script simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.</p>
+<p>Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled <code>Time (s)</code> and <code>DeltaP</code>. This file is available in the <code>hamopy/benchmarks</code> folder</p>
+<h2 id="script">Script</h2>
 <pre><code>from hamopy.classes import Mesh, Boundary, Time
 
 # Meshing
@@ -158,7 +180,7 @@ mesh = Mesh(**{"materials"    : [BM3],
            "nbr_elements" : [40] })
 
 # Boundary conditions
-clim_file = 'D:\location\BM3 climate.txt'
+clim_file = 'BM3 climate.txt'
 
 clim1 = Boundary('Fourier',**{"file"      : clim_file,
                           "time"      : "Time (s)",
@@ -205,7 +227,33 @@ if __name__ == "__main__":
     Temperature     = np.column_stack([evolution(results, 'T', _, t_out) for _ in x_out])
     Humidity        = np.column_stack([evolution(results, 'HR', _, t_out) for _ in x_out])
     MoistureContent = BM3.w(ham.p_c(Humidity, Temperature), Temperature)
-</code></pre></div>
+    # Plotting results
+
+    import matplotlib.pylab as plt
+    from matplotlib import rc
+    rc("font", family="serif", size=12)
+
+    figsize(6, 8)
+
+    ax = plt.subplot(211)
+
+    plt.plot(t_plot / (24*3600), Temperature)
+    plt.xlabel('Time (days)')
+    plt.ylabel('Temperature (C)')
+    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+
+    ax = plt.subplot(212)
+
+    plt.plot(t_plot / (24*3600), MoistCont)
+    plt.xlabel('Time (days)')
+    plt.ylabel('Moisture content (kg/m3)')
+    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+
+    fig = plt.gcf()
+    fig.savefig('BM3_results.png', format='png', dpi = 300)
+</code></pre>
+<h2 id="results">Results</h2>
+<p><img alt="BM3 results" src="../BM3_results.png" /></p></div>
         </div>
 
         <footer class="col-md-12">
