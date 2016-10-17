@@ -65,6 +65,7 @@ BM1_seal.set_conduc(lambda_0 = 100)
 BM1_seal.set_isotherm('polynomial', **{"HR" : [0, 0.25, 0.5, 0.75],
                                        "W"  : [0, 1, 2, 3] })
 
+
 ###################
 ### Benchmark 3 ###
 ###################

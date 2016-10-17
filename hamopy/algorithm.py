@@ -27,50 +27,57 @@ from scipy.sparse.linalg import spsolve
 from scipy.interpolate   import interp1d
 
 
-def initialisation(init, mesh, clim, thermo = False):
+def initialisation(init, mesh, thermo = False, hygro = False):
     """
     Initialisation of the array of unknown variables U
     
     If the init dictionary has an 'x' key, the initial conditions are a linear
     interpolation of the values of P and T provided by the user.
 
-    This function is called by hamopy.hamopy1D.calcul only
+    This function is called by hamopy.calcul only
     """
     
     if 'x' in init.keys():
         # The domain is initialised with non-uniform values of P and T
         
-        f_t = interp1d(init['x'], init['T'], 'linear')
-        T   = f_t(mesh.x)
+        if not hygro:
+            f_t = interp1d(init['x'], init['T'], 'linear')
+            T   = f_t(mesh.x)
         
-        if 'HR' in init.keys():
-            f_p = interp1d(init['x'], init['HR'], 'linear')
-            HR  = f_p(mesh.x)
-            P   = ham.p_c(HR, T)
-        elif 'PV' in init.keys():
-            f_p = interp1d(init['x'], init['PV'], 'linear')
-            HR  = f_p(mesh.x) / ham.p_sat(T)
-            P   = ham.p_c(HR, T)
-        elif 'PC' in init.keys():
-            f_p = interp1d(init['x'], np.log10(-init['PC']), 'linear')
-            P   = 10 ** f_p(mesh.x)
+        if not thermo:
+            if 'HR' in init.keys():
+                f_p = interp1d(init['x'], init['HR'], 'linear')
+                HR  = f_p(mesh.x)
+                P   = ham.p_c(HR, T)
+            elif 'PV' in init.keys():
+                f_p = interp1d(init['x'], init['PV'], 'linear')
+                HR  = f_p(mesh.x) / ham.p_sat(T)
+                P   = ham.p_c(HR, T)
+            elif 'PC' in init.keys():
+                f_p = interp1d(init['x'], np.log10(-init['PC']), 'linear')
+                P   = -10 ** f_p(mesh.x)
         
     else:
         # The domain is initialised with uniform values of P and T
         
-        T = init['T'] * np.ones(mesh.nbr_nodes)
+        if not hygro:
+            T = init['T'] * np.ones(mesh.nbr_nodes)
         
-        if 'HR' in init.keys():
-            P = ham.p_c(init['HR'], init['T']) * np.ones(mesh.nbr_nodes)
-        elif 'PV' in init.keys():
-            HR = init['PV'] / ham.p_sat(init['T'])
-            P  = ham.p_c(HR, init['T']) * np.ones(mesh.nbr_nodes)
-        elif 'PC' in init.keys():
-            P = init['PC'] * np.ones(mesh.nbr_nodes)
+        if not thermo:
+            if 'HR' in init.keys():
+                P = ham.p_c(init['HR'], init['T']) * np.ones(mesh.nbr_nodes)
+            elif 'PV' in init.keys():
+                HR = init['PV'] / ham.p_sat(init['T'])
+                P  = ham.p_c(HR, init['T']) * np.ones(mesh.nbr_nodes)
+            elif 'PC' in init.keys():
+                P = init['PC'] * np.ones(mesh.nbr_nodes)
     
-    if thermo == True:
+    if thermo:
         # In case of thermal transfer only
         return T
+    elif hygro:
+        # In case of hygric transfer only
+        return P
     else:
         return np.concatenate((P,T))
     
@@ -137,7 +144,7 @@ def calcul(mesh_in, clim_in, init_in, time_in, output_type='dict', logfile = Non
     time = copy.deepcopy( time_in )
     
     # U is the array of interest : a concatenation of P and T at each time step
-    U = initialisation(init, mesh, clim)
+    U = initialisation(init, mesh)
     U = np.asarray([U])
     
     # Initialisation of the simulation diary, if asked by the user
@@ -222,7 +229,7 @@ def calcul(mesh_in, clim_in, init_in, time_in, output_type='dict', logfile = Non
             logobj.write("Convergence not reached: simulation stopped")
             logobj.close()
         print("Convergence not reached: simulation stopped")
-        return np.nan
+        # return np.nan
     
     # Otherwise, the simulation has been completed without interruption
     if logobj is not None:
@@ -275,6 +282,26 @@ def iteration_thermo(T, T_old, time, mesh, clim):
 
     return T_new
 
+def iteration_hygro(P, P_old, time, mesh, clim):
+    """
+    This is where things happen.
+    
+    This function calculates a new iteration of P, given the conditions
+    provided by the time, mesh and clim objects.
+    """
+    
+    # Construction of the matrices for the linearised equations system
+    [C, K]    = mesh.system_matrices_hygro(P)               # matrices
+    [F, dFdU] = mesh.system_boundary_hygro(P, clim, time.t) # boundary
+    
+    # Newton Raphson
+    A = C + time.delta*K - time.delta*dFdU
+    b = time.delta*F - time.delta*K*P - C*(P-P_old)
+    DELTA_P = spsolve(A, b)
+    P_new   = P + DELTA_P
+
+    return P_new
+
 def calcul_thermo(mesh_in, clim_in, init_in, time_in, output_type='dict', logfile = None):
     """
     This is an alternate version of the hamopy algorithm, for heat transfer
@@ -303,7 +330,7 @@ def calcul_thermo(mesh_in, clim_in, init_in, time_in, output_type='dict', logfil
     time = copy.deepcopy( time_in )
     
     # Initialisation de la matrice des solutions
-    T = initialisation(init, mesh, clim, thermo = True)
+    T = initialisation(init, mesh, thermo = True)
     T = np.asarray([T])
     
     # Initialisation of the simulation diary, if asked by the user
@@ -399,5 +426,135 @@ def calcul_thermo(mesh_in, clim_in, init_in, time_in, output_type='dict', logfil
         results = {'x'  : mesh.x,
                    't'  : np.array(time.vec),
                    'T'  : T }
+                    
+        return results
+
+def calcul_hygro(mesh_in, clim_in, init_in, time_in, output_type='dict', logfile = None):
+    """
+    This is an alternate version of the hamopy algorithm, for moisture transfer
+    only (without heat)
+    
+    Required input arguments are the following objects : mesh, clim, init, time
+    
+    :mesh: A :class:`Mesh` object containing all information on material
+           properties and mesh coordinates, along with most methods called for
+           the calculation of the new values of P and T at each iteration
+    :clim: A list of 2 :class:`Boundary` objects including methods to call the
+           value of all field variables as functions of the time of simulation
+    :init: A :class:`dict` of initial conditions
+    :time: A :class:`Time` object storing information regarding the duration of
+           the simulation and the discretisation in time
+    
+    Optional arguments:
+    
+    :output_type: String, either 'dict' or 'file'
+    :logfile: Specify to save the process of the simulation in a diary
+    """
+
+    mesh = copy.deepcopy( mesh_in )
+    clim = copy.deepcopy( clim_in )
+    init = copy.deepcopy( init_in )
+    time = copy.deepcopy( time_in )
+    
+    # Initialisation de la matrice des solutions
+    P = initialisation(init, mesh, hygro = True)
+    P = np.asarray([P])
+    
+    # Initialisation of the simulation diary, if asked by the user
+    if logfile is None:
+        logobj = None
+    else:
+        logobj = open(logfile,'w')
+        logobj.write("Conv. P \n")
+    
+    # Beginning of the time loop
+    while time.t <= time.end:
+        
+        # Initialisation of the new time step
+        if logobj is not None:
+            logobj.write("t = %s \n" % time.t)
+        time.vec.append(time.t)
+        nbr_iter = 0
+        conv_p   = 1
+        P = np.concatenate( (P, [P[-1]]) )
+        P_old = copy.deepcopy( P[-1] )
+        
+        # Dirichlet boundary conditions are manually updated
+        for i in range(2):
+            # Each side of the domain is treated separately
+            if clim[i].type == 'Dirichlet':
+                ind =  i * (mesh.nbr_nodes - 1)
+                P[-1, ind] = ham.p_c(clim[i].HR(time.t), clim[i].T(time.t))
+        
+        # Iteration loop of the current time step
+        while (conv_p > 1e-4) or (nbr_iter <= 1) :
+            
+            # Number of iterations since the time step began
+            nbr_iter += 1
+            
+            # Check that the maximum number of iterations has not been exceeded
+            if time.method == 'variable':
+                if nbr_iter > time.iter_max:
+                    time.try_again(2, logobj)
+                    P[-1]  = P_old
+                    nbr_iter = 0
+                    continue
+            
+            # Key step : calculation of the new T profile
+            P_new = iteration_hygro(P[-1], P_old, time, mesh, clim)
+            
+            # Check if the new values of T are within acceptable bounds
+            if solution_not_acceptable(P = P_new, T = 293.15):
+                # Divergence : divide time step size by 10 and try again
+                time.try_again(10, logobj)
+                if time.stop:
+                    break
+                else:
+                    P[-1]  = P_old
+                    nbr_iter = 0
+                    continue
+                
+            else:
+                conv_p = np.sum( (P_new-P[-1])**2 ) / np.sum( P[-1]**2 )
+                P[-1]  = P_new
+                if logobj is not None:
+                    logobj.write( "%.6e \n" % conv_p )
+        
+        # Time step is over: prepare the next one
+        if time.stop:
+            break
+        
+        time.next_step(nbr_iter)
+        if time.t > time.end and time.vec[-1] < time.end:
+            time.t = time.end
+    
+    # If the simulation has been interrupted for some reason, return nan
+    if time.stop:
+        if logobj is not None:
+            logobj.write("Convergence not reached: simulation stopped")
+            logobj.close()
+        print("Convergence not reached: simulation stopped")
+        return np.nan
+        
+    # Otherwise, the simulation has been completed without interruption
+    if logobj is not None:
+        logobj.close()
+    
+    # The results are now saved
+    T = ( clim[0].T(time.end) + clim[1].T(time.end) )/2
+    if output_type == 'file':
+        
+        np.savez('hamopy_output',
+                 x  = mesh.x,
+                 t  = time.vec,
+                 PC  = P )
+                 
+    elif output_type == 'dict':
+
+        results = {'x'  : mesh.x,
+                   't'  : np.array(time.vec),
+                   'PC'  : P,
+                   'HR' : ham.HR(P, T),
+                   'PV' : ham.p_v(P, T)}
                     
         return results

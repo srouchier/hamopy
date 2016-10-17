@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='hamopy',
-    version='0.1.1',
+    version='0.2.0',
     author='S. Rouchier',
     author_email='s.rouchier@gmail.com',
     packages=['hamopy', 'hamopy.materials', 'hamopy.benchmarks'],

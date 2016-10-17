@@ -1,7 +1,5 @@
 """
 5th exercise of the Hamstad benchmark package
-
-Capillary active inside insulation
 """
 
 from hamopy.classes import Mesh, Boundary, Time
@@ -57,32 +55,8 @@ if __name__ == "__main__":
     Humidity    = distribution(result, 'HR', x_plot, t_plot)
     Moisture    = np.zeros(np.shape(Temperature))
     
-    # Moisture content distribution of each layer
     for i in range(len(mesh.materials)):
         xmin = sum(mesh.sizes[0:i])
         xmax = sum(mesh.sizes[0:i+1])
         mask = ((x_plot >= xmin) & (x_plot <= xmax))
         Moisture[mask] = mesh.materials[i].w(ham.p_c(Humidity[mask],Temperature[mask]), Temperature[mask])
-    
-    # Plotting results
-    
-    import matplotlib.pylab as plt
-    from matplotlib import rc
-    rc("font", family="serif", size=12)
-    
-    figsize(6, 8)
-
-    ax = plt.subplot(211)
-    
-    plt.plot(x_plot[300:], Humidity[300:], 'k-', linewidth=2)
-    plt.xlabel('x (m)')
-    plt.ylabel('Relative humidity')
-    
-    ax = plt.subplot(212)
-    
-    plt.plot(x_plot[300:], Moisture[300:], 'k-', linewidth=2)
-    plt.xlabel('x (m)')
-    plt.ylabel('Moisture content (kg/m3)')
-    
-    fig = plt.gcf()
-    fig.savefig('BM5_results.png', format='png', dpi = 300)

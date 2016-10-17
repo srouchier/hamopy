@@ -3,6 +3,7 @@
 """
 
 from hamopy.classes import Mesh, Boundary, Time
+import hamopy.ham_library as ham
 
 # Choice of materials
 from hamopy.materials.hamstad import BM4_load, BM4_finishing
@@ -19,12 +20,12 @@ BM4_load.set_perm_liquid('interp', **{"PC" : PC[::-1],
                                       "KL" : KL[::-1]})
 
 # Geometry
-mesh = Mesh(**{"materials"    : [BM4_load, BM4_finishing],
-               "sizes"        : [0.1, 0.02],
-               "nbr_elements" : [200, 200] })
+mesh = Mesh(**{"materials"    : [BM4_load, BM4_load, BM4_load, BM4_finishing, BM4_finishing],
+               "sizes"        : [0.01, 0.08, 0.01, 0.005, 0.015],
+               "nbr_elements" : [100, 100, 100, 100, 100] })
 
 # Boundary conditions
-clim_file = 'D:\MCF\Simulation\Python\Hamstad/BM4 Climate.txt'
+clim_file = 'BM4 Climate.txt'
 
 clim1 = Boundary('Fourier',**{"file" : clim_file,
                               "time" : "time (s)",
@@ -56,8 +57,30 @@ time = Time('variable',**{"delta_t"  : 600,
 
 if __name__ == "__main__":
     
-    diary = 'D:\MCF\Simulation\Python\hamopy_log'
+    diary = 'hamopy_log'
     
     # Calculation
     from hamopy.algorithm import calcul
     result = calcul(mesh, clim, init, time, logfile = diary)
+    
+    from hamopy.postpro import evolution
+    data0 = pd.read_csv(clim_file, delimiter='\t')
+    t_plot = result['t']
+    x_plot = [0., 0.1, 0.12]
+    
+    Temperature = np.column_stack([evolution(result, 'T', _, t_plot) for _ in x_plot]) - 273.15
+    Humidite    = np.column_stack([evolution(result, 'HR', _, t_plot) for _ in x_plot])
+    TeneurEnEau1 = BM4_load.w(ham.p_c(Humidite[:,0], Temperature[:,0]+273.15), Temperature[:,0]+273.15)
+    TeneurEnEau2 = BM4_load.w(ham.p_c(Humidite[:,1], Temperature[:,1]+273.15), Temperature[:,1]+273.15)
+    TeneurEnEau3 = BM4_finishing.w(ham.p_c(Humidite[:,1], Temperature[:,1]+273.15), Temperature[:,1]+273.15)
+    TeneurEnEau4 = BM4_finishing.w(ham.p_c(Humidite[:,2], Temperature[:,2]+273.15), Temperature[:,2]+273.15)
+
+    import matplotlib.pyplot as plt
+    plt.figure()
+    plt.plot(t_plot/3600, Temperature[:,0])
+    plt.figure()
+    plt.plot(t_plot/3600, TeneurEnEau1, '-r')
+    plt.plot(t_plot/3600, TeneurEnEau2, '--r')
+    plt.plot(t_plot/3600, TeneurEnEau3, '-b')
+    plt.plot(t_plot/3600, TeneurEnEau4, '--b')
+    plt.plot([24, 24], [0, 200], '--k')

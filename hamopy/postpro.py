@@ -49,7 +49,7 @@ def distribution(result, var, x = None, t = None):
     distr_nodes = f_t(t)
     
     # Interpolate from the node coordinates to the output discretisation
-    f_x = interp1d(result['x'], distr_nodes, 'cubic', bounds_error=False)
+    f_x = interp1d(result['x'], distr_nodes, 'cubic', bounds_error=False, fill_value = 0)
     
     return f_x(x)
 
@@ -79,7 +79,7 @@ def evolution(result, var, x, t = None):
     evol_temps_simul = f_x(x)
     
     # Interpolate from the time of simulation to the output time
-    f_t = interp1d(result['t'], evol_temps_simul, bounds_error=False)
+    f_t = interp1d(result['t'], evol_temps_simul, bounds_error=False, fill_value = 0)
     
     return f_t(t)
 

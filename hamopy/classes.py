@@ -250,9 +250,14 @@ class Material(object):
         elif method == 'interp':
             
             # delta_p is defined by interpolation between measured points
-            self.dp_p1, self.dp_p2 = kwargs['dp']
-            self.dp_f  = UnivariateSpline(kwargs['HR'], np.log10(kwargs['dp']), k=1 )
-
+            #self.dp_p1, self.dp_p2 = kwargs['dp']
+            #self.dp_f = UnivariateSpline(kwargs['HR'], np.log10(kwargs['dp']), k=1 )
+            self.dp_f = interp1d(np.array(kwargs['HR']), np.log10(kwargs['dp']), fill_value = 'extrapolate')
+            
+        elif method == 'interp_mu':
+            
+            self.mu_f = interp1d(np.array(kwargs['HR']), np.array(kwargs['MU']), fill_value = 'extrapolate')
+            
     def delta_p(self, p_c, T = 293.15):
         """
         Water vapour permeability [s]
@@ -270,6 +275,12 @@ class Material(object):
             
             dp = 10 ** self.dp_f( ham.HR(p_c, T).ravel() )
             dp = dp.reshape(np.shape(p_c))
+            
+        elif self.dp_method == 'interp_mu':
+            
+            hr = ham.HR(p_c, T)
+            mu = self.mu_f(hr)
+            dp = 26.1e-6 / (mu*ham.Rv*T)
         
         return dp
     
@@ -310,8 +321,8 @@ class Material(object):
             
         elif method == 'interp':
             
-            self.logpsuc = np.log10( -kwargs['PC'] )
-            self.logkl   = np.log10(  kwargs['KL'] )
+            self.logpsuc = np.log10( -np.array(kwargs['PC']) ) # positif
+            self.logkl   = np.log10(  np.array(kwargs['KL']) )
             self.kl_f = UnivariateSpline(self.logpsuc, self.logkl, k=1)
 
             
@@ -487,8 +498,8 @@ class Mesh(object):
         for i in range(np.size(sizes)):
             foo = i * np.ones(nbr_elements[i])
             bar = sizes[i] / nbr_elements[i] * np.ones(nbr_elements[i])
-            elem_material = np.concatenate((elem_material, foo), axis=1)
-            elem_size     = np.concatenate((elem_size,     bar), axis=1)
+            elem_material = np.concatenate((elem_material, foo), axis=0)
+            elem_size     = np.concatenate((elem_size,     bar), axis=0)
         
         # Material index and size of each element of the mesh
         self.elem_material = [int(i) for i in elem_material]
@@ -693,6 +704,56 @@ class Mesh(object):
         
         return C, K
         
+    def system_matrices_hygro(self, P):
+        """
+        Method of :class:`Mesh` called by hamopy.iteration_thermo
+        
+        Calculates the capacity and conductivity matrices C and K of the global
+        linearised system for the updating of T. This is where the storage and
+        transport coefficients of the transport equations are involved.
+        
+        C and K are sparse matrices
+        """
+        
+        # Value of T at the GL integration points
+        f_p = interp1d(self.x, np.log10(-P))
+        GL_P = -10**f_p(self.GL_X)
+        
+        c_mm, k_mm = (np.zeros(np.shape(self.GL_X)) for _ in range(2))
+        
+        # Loop over the subdomains (one or several per material)
+        for sd in range(np.size(self.materials)):
+            
+            # Pick which elements of the mesh belong to the current subdomain
+            m = self.materials[sd]
+            mask = (np.array(self.elem_material) == sd)
+
+            p = GL_P[mask]
+            t = 293.15
+            
+            # Capacity
+            c_mm[mask] = m.c_w(p)
+            # Permeability
+            G_P  = ham.p_v(p, t) / (ham.rho_liq * ham.Rv * t)
+            k_mm[mask] = G_P * m.delta_p(p,t) + m.k_l(p)
+        
+        # Numerical integration of the elementary matrices
+        E = np.sum(self.nbr_elem)
+        def integration(c, NtN):
+            return np.sum( (self.GL_W*c).reshape((E,1,1,4)) * NtN, axis=-1)
+        C_mm_e = integration(c_mm, self.GL_NtN)
+        K_mm_e = integration(k_mm, self.GL_BtB)
+            
+        # Assembling of the elementary matrices
+        def assemblage(C):
+            return coo_matrix((C.ravel(), (self.indices_row,self.indices_col)))
+
+        # Construction of the global matrices
+        C = assemblage(C_mm_e)
+        K = assemblage(K_mm_e)
+        
+        return C, K
+        
     def system_boundary(self, P, T, clim, t):
         """
         Method of :class:`Mesh` called by hamopy.iteration
@@ -758,6 +819,33 @@ class Mesh(object):
             
             F[ind[i]] = clim[i].h_t(t) * ( clim[i].T_eq(t) - T[ind[i]] )
             data.extend([-clim[i].h_t(t)])
+            
+        row = [0, N-1]
+        col = [0, N-1]
+        dFdU = coo_matrix( (data, (row,col)) )
+        
+        return F, dFdU
+        
+    def system_boundary_hygro(self, P, clim, t):
+        """
+        Method of :class:`Mesh` called by hamopy.iteration_thermo
+        
+        Calculates the vector F of boundary conditions, and the matrix dFdU
+        involved in the Newton-Raphson iteration scheme
+        """
+        
+        N    = self.nbr_nodes
+        F    = np.zeros(N)
+        data = []
+        
+        # Loop over each boundary
+        ind = [0, N - 1]
+        for i in range(2):
+            
+            E  = clim[i].h_m(t) * ( clim[i].p_v(t) - ham.p_v(P[ind[i]], 293.15) )
+            R  = clim[i].g_l(t)
+            F[ind[i]]   = E + R
+            data.extend([ -clim[i].h_m(t) * ham.p_v(P[ind[i]],293.15) / ( ham.rho_liq*ham.Rv*293.15 ) ])
             
         row = [0, N-1]
         col = [0, N-1]
@@ -887,16 +975,13 @@ class Boundary:
             # All values are constant or given in the initial dictionary
             kwargs_new = kwargs
         
-        # Celsius = kwargs_new['T'].mean() < 200
-    
-        
-        # If T has been given in C, it is switched to K
-        """
-        if Celsius:
+
+        # If T has been given in C, it is switched to K      
+        if kwargs_new['T'].mean() < 200:
             kwargs_new['T'] += 273.15
             if 'T_eq' in kwargs_new.keys():
                 kwargs_new['T_eq'] += 273.15
-        """
+
         
         # If no equivalent temperature is given, it is set to that of air
         if 'T_eq' not in kwargs_new.keys():
@@ -972,6 +1057,9 @@ class Boundary:
             out = self.data['p_v'][0]
             f = interp1d(self.data['time'], self.data['p_v'], bounds_error=False, fill_value=out)
             return f(t)
+    
+    def p_c(self, t):
+        return ham.p_c(self.HR(t), self.T(t))
     
     def h_t(self, t):
         """ Heat transfer coefficient [W/(m2K)]"""
