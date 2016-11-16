@@ -20,6 +20,6 @@ Hamopy makes good use of its open-source nature, and gives users complete contro
 
 * easily automate many simulations for sensitivity analyses, evolutionary algorithms and such.
 
-The documentation is available here: http://code.google.com/p/hamopy
+The documentation is available here: http://srouchier.github.io/hamopy/
 
 Any contribution into improving hamopy is welcome, as to make open-source HAM modelling available and understandable by all.
