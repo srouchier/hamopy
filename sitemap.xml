@@ -3,8 +3,8 @@
 
     
     <url>
-     <loc>None/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,54 +12,38 @@
     
         
     <url>
-     <loc>None/user-guide/inputs/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/inputs/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/user-guide/materials/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/materials/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/user-guide/boundary/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/boundary/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/user-guide/simulation/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/simulation/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/user-guide/library/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/library/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/user-guide/post-processing/</loc>
-     <lastmod>2015-06-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>None/examples/Hamstad_BM3/</loc>
-     <lastmod>2015-06-08</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>None/examples/Hamstad_BM5/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/user-guide/post-processing/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -68,14 +52,30 @@
     
         
     <url>
-     <loc>None/about/author/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/examples/Hamstad_BM3/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
-     <loc>None/about/license/</loc>
-     <lastmod>2015-06-08</lastmod>
+     <loc>/examples/Hamstad_BM5/</loc>
+     <lastmod>2016-12-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>/about/author/</loc>
+     <lastmod>2016-12-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/about/license/</loc>
+     <lastmod>2016-12-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

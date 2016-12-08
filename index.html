@@ -1,176 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="./img/favicon.ico">
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Home - hamopy - Heat, Air and Moisture transfer in Python</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-	<title>hamopy - Heat, Air and Moisture transfer in Python</title>
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Home";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
 
-        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/highlight.css">
-        <link href="./css/base.css" rel="stylesheet">
+<body class="wy-body-for-nav" role="document">
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+  <div class="wy-grid-for-nav">
 
-        
-    </head>
-
-    <body>
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Main title -->
-            <a class="navbar-brand" href=".">hamopy - Heat, Air and Moisture transfer in Python</a>
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-            
-            
-                <li class="active">
-                    <a href=".">Home</a>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">User guide <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="user-guide/inputs/">Input definition</a>
-                        </li>
-                    
-                        <li >
-                            <a href="user-guide/materials/">Materials</a>
-                        </li>
-                    
-                        <li >
-                            <a href="user-guide/boundary/">Boundary conditions</a>
-                        </li>
-                    
-                        <li >
-                            <a href="user-guide/simulation/">Simulation</a>
-                        </li>
-                    
-                        <li >
-                            <a href="user-guide/library/">Library</a>
-                        </li>
-                    
-                        <li >
-                            <a href="user-guide/post-processing/">Post-processing</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="examples/Hamstad_BM3/">Hamstad BM3</a>
-                        </li>
-                    
-                        <li >
-                            <a href="examples/Hamstad_BM5/">Hamstad BM5</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                    
-                        <li >
-                            <a href="about/author/">Author</a>
-                        </li>
-                    
-                        <li >
-                            <a href="about/license/">License</a>
-                        </li>
-                    
-                    </ul>
-                </li>
-            
-            
-            </ul>
-
-            <!-- Search, Navigation and Repo links -->
-            <ul class="nav navbar-nav navbar-right">
-                <li class="disabled">
-                    <a rel="next" >
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li >
-                    <a rel="prev" href="user-guide/inputs/">
-                        Next <i class="fa fa-arrow-right"></i>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="https://github.com/srouchier/hamopy">
-                        
-                            <i class="fa fa-github"></i>
-                        
-                        GitHub
-                    </a>
-                </li>
-                
-            </ul>
-        </div>
-    </div>
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> hamopy - Heat, Air and Moisture transfer in Python</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
 </div>
+      </div>
 
-        <div class="container">
-            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-    
-        <li class="main active"><a href="#welcome-to-the-hamopy-documentation">Welcome to the hamopy documentation</a></li>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
         
-            <li><a href="#installation">Installation</a></li>
+            <ul>
+            
+                <li class="toctree-l3"><a href="#welcome-to-the-hamopy-documentation">Welcome to the hamopy documentation</a></li>
+                
+                    <li><a class="toctree-l4" href="#installation">Installation</a></li>
+                
+                    <li><a class="toctree-l4" href="#how-things-work">How things work</a></li>
+                
+                    <li><a class="toctree-l4" href="#user-guide">User guide</a></li>
+                
+                    <li><a class="toctree-l4" href="#examples">Examples</a></li>
+                
+            
+            </ul>
         
-            <li><a href="#how-things-work">How things work</a></li>
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>User guide</span></li>
+
         
-            <li><a href="#user-guide">User guide</a></li>
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/inputs/">Input definition</a>
         
-            <li><a href="#examples">Examples</a></li>
+    </li>
+
         
-    
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/materials/">Materials</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/boundary/">Boundary conditions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/simulation/">Simulation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/library/">Library</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="user-guide/post-processing/">Post-processing</a>
+        
+    </li>
+
+        
     </ul>
-</div></div>
-            <div class="col-md-9" role="main">
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Examples</span></li>
 
-<h1 id="welcome-to-the-hamopy-documentation">Welcome to the hamopy documentation</h1>
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/Hamstad_BM3/">Hamstad BM3</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="examples/Hamstad_BM5/">Hamstad BM5</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>About</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/author/">Author</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="about/license/">License</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">hamopy - Heat, Air and Moisture transfer in Python</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/srouchier/hamopy/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="welcome-to-the-hamopy-documentation">Welcome to the hamopy documentation</h1>
 <p>Hamopy is a python package for the numerical simulation of one-dimensional heat, air and moisture (HAM) transfer in porous materials. Its principle is the finite-element resolution of the HAM conservation equations. The only requirement to run it is a fairly recent version of SciPy.</p>
 <p>The original field of application is the hygrothermal modelling of building materials, although the code is not restricted to it.</p>
 <p>Hamopy makes good use of its open-source nature, and gives users complete control over the simulation process. One can:</p>
@@ -183,14 +210,10 @@
 </ul>
 <p>Any contribution into improving hamopy is welcome, as to make open-source HAM modelling available and understandable by all.</p>
 <h2 id="installation">Installation</h2>
-<p>The easiest way to install hamopy is through Pip:</p>
-<pre><code>$ pip install hamopy
-</code></pre>
-<p>You can also clone the <a href="https://github.com/srouchier/hamopy">GitHub repository</a>, then either include its path in the appropriate environment variable, or run</p>
-<pre><code>$ python setup.py install
-</code></pre>
+<p>You can download and install hamopy by cloning the <a href="https://github.com/srouchier/hamopy">GitHub repository</a>, or download and unpack the ZIP file.</p>
+<p>Then include the path to the download directory to your PATH or PYTHONPATH environment variable.</p>
 <h2 id="how-things-work">How things work</h2>
-<p>This is basically how a simulation is run:</p>
+<p>Once <code>hamopy</code> is detected by your Python installation, this is basically how a simulation is run:</p>
 <pre><code>from hamopy.algorithm import calcul
 results = calcul(mesh, clim, init, time)
 </code></pre>
@@ -200,11 +223,11 @@ results = calcul(mesh, clim, init, time)
 <ul>
 <li><a href="user-guide/inputs/">Inputs</a>: how to define the conditions of simulation<ul>
 <li><a href="user-guide/materials/">Materials</a>: how to create a new material</li>
-<li><a href="user-guide/boundary/">Boundary conditions</a>: how to set up boundary conditions </li>
+<li><a href="user-guide/boundary/">Boundary conditions</a>: how to set up boundary conditions</li>
 </ul>
 </li>
 <li><a href="user-guide/simulation/">Simulation</a>: some options to customise and monitor the simulation<ul>
-<li><a href="user-guide/library/">Library</a>: small library of useful functions within hamopy </li>
+<li><a href="user-guide/library/">Library</a>: small library of useful functions within hamopy</li>
 </ul>
 </li>
 <li><a href="user-guide/post-processing/">Post-processing</a>: how to visualise results</li>
@@ -213,18 +236,54 @@ results = calcul(mesh, clim, init, time)
 <ul>
 <li><a href="examples/Hamstad_BM3/">Hamstad BM 3</a>: 3rd benchmark exercise of the Hamstad package</li>
 <li><a href="examples/Hamstad_BM5/">Hamstad BM 5</a>: 5th benchmark exercise of the Hamstad package</li>
-</ul></div>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="user-guide/inputs/" class="btn btn-neutral float-right" title="Input definition">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
         </div>
+      </div>
 
-        <footer class="col-md-12">
-            <hr>
-            
-            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
-        </footer>
+    </section>
+    
+  </div>
 
-        <script src="./js/jquery-1.10.2.min.js"></script>
-        <script src="./js/bootstrap-3.0.3.min.js"></script>
-        <script src="./js/highlight.pack.js"></script>
-        <script src="./js/base.js"></script>
-    </body>
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/srouchier/hamopy" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="user-guide/inputs/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
 </html>
+
+<!--
+MkDocs version : 0.16.0
+Build Date UTC : 2016-12-08 12:31:23
+-->
