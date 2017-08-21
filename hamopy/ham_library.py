@@ -46,14 +46,17 @@ Rv     = R/18 * 1e3         # specific gas constant [J.kg-1.K-1]
 
 # FONCTIONS
 
-def p_sat(T):
+def p_sat(T = 293.15):
     """
     Water vapor saturation pressure [Pa]
     
     input : temperature T [K]
     """
     
-    return p_atm * exp( l_lv / Rv * (1/373.15 - 1./T) )
+    T_celsius = T - 273.15
+    log_p_sat = 2.7858 + 7.5*T_celsius / (237.3+T_celsius)
+    
+    return 10**log_p_sat
     
     
 def D_va(T):

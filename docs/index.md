@@ -16,11 +16,13 @@ Any contribution into improving hamopy is welcome, as to make open-source HAM mo
 
 ## Installation
 
-You can download and install hamopy by cloning the [GitHub repository](https://github.com/srouchier/hamopy).
+You can download and install hamopy by cloning the [GitHub repository](https://github.com/srouchier/hamopy), or download and unpack the ZIP file.
+
+Then include the path to the download directory to your PATH or PYTHONPATH environment variable.
 
 ## How things work
 
-This is basically how a simulation is run:
+Once `hamopy` is detected by your Python installation, this is basically how a simulation is run:
 
 	from hamopy.algorithm import calcul
 	results = calcul(mesh, clim, init, time)
@@ -33,9 +35,9 @@ Of course, some questions remain unanswered, which is what this page is for.
 
 * [Inputs](user-guide/inputs.md): how to define the conditions of simulation
 	* [Materials](user-guide/materials.md): how to create a new material
-	* [Boundary conditions](user-guide/boundary.md): how to set up boundary conditions 
+	* [Boundary conditions](user-guide/boundary.md): how to set up boundary conditions
 * [Simulation](user-guide/simulation.md): some options to customise and monitor the simulation
-	* [Library](user-guide/library.md): small library of useful functions within hamopy 
+	* [Library](user-guide/library.md): small library of useful functions within hamopy
 * [Post-processing](user-guide/post-processing.md): how to visualise results
 
 ## Examples

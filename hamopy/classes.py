@@ -970,17 +970,22 @@ class Boundary:
                     kwargs_new[key] = np.array( data0[kwargs[key]] )
                 else:
                     kwargs_new[key] = kwargs[key] * np.ones(taille_du_fichier)
+               
+            # If T has been given in C, it is switched to K 
+            if kwargs_new['T'].mean() < 200:
+                kwargs_new['T'] += 273.15
+            if 'T_eq' in kwargs_new.keys():
+                kwargs_new['T_eq'] += 273.15
 
         else:
             # All values are constant or given in the initial dictionary
             kwargs_new = kwargs
         
-
-        # If T has been given in C, it is switched to K      
-        if kwargs_new['T'].mean() < 200:
-            kwargs_new['T'] += 273.15
-            if 'T_eq' in kwargs_new.keys():
-                kwargs_new['T_eq'] += 273.15
+            # If T has been given in C, it is switched to K      
+            if kwargs_new['T'] < 200:
+                kwargs_new['T'] += 273.15
+                if 'T_eq' in kwargs_new.keys():
+                    kwargs_new['T_eq'] += 273.15
 
         
         # If no equivalent temperature is given, it is set to that of air

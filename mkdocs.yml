@@ -16,4 +16,4 @@ pages:
 - About:
     - Author: 'about/author.md'
     - License: 'about/license.md'
-theme: spacelab
+theme: readthedocs
