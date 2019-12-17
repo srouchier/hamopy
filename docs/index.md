@@ -16,9 +16,13 @@ Any contribution into improving hamopy is welcome, as to make open-source HAM mo
 
 ## Installation
 
-You can download and install hamopy by cloning the [GitHub repository](https://github.com/srouchier/hamopy), or download and unpack the ZIP file.
+hamopy may be installed by running
 
-Then include the path to the download directory to your PATH or PYTHONPATH environment variable.
+    pip install hamopy
+
+Alternatively, you can download and install hamopy by cloning the [GitHub repository](https://github.com/srouchier/hamopy) and running:
+
+    python setup.py install
 
 ## How things work
 

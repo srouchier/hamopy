@@ -1,8 +1,14 @@
 """
 5th exercise of the Hamstad benchmark package
 """
+import numpy  as np
+import matplotlib.pylab as plt
 
+# All things necessary to run the simulation
+from hamopy import ham_library as ham
 from hamopy.classes import Mesh, Boundary, Time
+from hamopy.algorithm import calcul
+from hamopy.postpro import distribution
 
 # Choice of materials and geometry
 from hamopy.materials.hamstad import BM5_brick, BM5_mortar, BM5_insulation
@@ -35,28 +41,28 @@ time = Time('variable',**{"delta_t"  : 900,
                           "delta_min": 1e-3,
                           "delta_max": 900 } )
 
-if __name__ == "__main__":
-    
-    import numpy as np
-    
-    # Calculation
-    from hamopy.algorithm import calcul
-    result = calcul(mesh, clim, init, time)
-    
-    # Post processing
-    from hamopy.postpro import distribution
+# Calculation
+result = calcul(mesh, clim, init, time)
 
-    t_plot = 12960000
-    x_plot = np.linspace(0, 0.42, 421)
-    
-    from hamopy import ham_library as ham
-    
-    Temperature = distribution(result, 'T', x_plot, t_plot)
-    Humidity    = distribution(result, 'HR', x_plot, t_plot)
-    Moisture    = np.zeros(np.shape(Temperature))
-    
-    for i in range(len(mesh.materials)):
-        xmin = sum(mesh.sizes[0:i])
-        xmax = sum(mesh.sizes[0:i+1])
-        mask = ((x_plot >= xmin) & (x_plot <= xmax))
-        Moisture[mask] = mesh.materials[i].w(ham.p_c(Humidity[mask],Temperature[mask]), Temperature[mask])
+# Post processing
+t_plot = 12960000
+x_plot = np.linspace(0, 0.42, 421)
+Temperature = distribution(result, 'T', x_plot, t_plot)
+Humidity    = distribution(result, 'HR', x_plot, t_plot)
+Moisture    = np.zeros(np.shape(Temperature))
+
+for i in range(len(mesh.materials)):
+    xmin = sum(mesh.sizes[0:i])
+    xmax = sum(mesh.sizes[0:i+1])
+    mask = ((x_plot >= xmin) & (x_plot <= xmax))
+    Moisture[mask] = mesh.materials[i].w(ham.p_c(Humidity[mask],Temperature[mask]), Temperature[mask])
+
+# Plotting results
+fig, ax = plt.subplots(2, 1)
+ax[0].plot(x_plot[300:], Humidity[300:], 'k-', linewidth=2)
+ax[0].set_xlabel('x (m)')
+ax[0].set_ylabel('Relative humidity')
+ax[1].plot(x_plot[300:], Moisture[300:], 'k-', linewidth=2)
+ax[1].set_xlabel('x (m)')
+ax[1].set_ylabel('Moisture content (kg/m3)')
+plt.show()

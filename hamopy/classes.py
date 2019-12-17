@@ -352,7 +352,7 @@ class Material(object):
             return self.K_sat * s**self.tau_kl * (numerateur/denominateur)**2
             
         elif self.kl_method == 'exp':
-            # Exponential law (used in some Hamstad benchmarks)
+            # Exponential law (used in some Hamstad examples)
             w = self.w(p_c)
             lnkl = np.zeros(np.shape(p_c))
             for i in range(len(self.a_kl)):
