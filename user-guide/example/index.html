@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>Library - hamopy - Heat, Air and Moisture transfer in Python</title>
+  <title>Example - hamopy - Heat, Air and Moisture transfer in Python</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Library";
-    var mkdocs_page_input_path = "user-guide/library.md";
+    var mkdocs_page_name = "Example";
+    var mkdocs_page_input_path = "user-guide/example.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -73,15 +73,9 @@
                     
     <a class="" href="../simulation/">Simulation</a>
                 </li>
-                <li class=" current">
+                <li class="">
                     
-    <a class="current" href="./">Library</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#library-of-functions">Library of functions</a></li>
-    
-
-    </ul>
+    <a class="" href="../library/">Library</a>
                 </li>
                 <li class="">
                     
@@ -141,15 +135,11 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>User guide &raquo;</li>
-        
-      
     
-    <li>Library</li>
+    <li>Example</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/srouchier/hamopy/edit/master/docs/user-guide/library.md"
+        <a href="https://github.com/srouchier/hamopy/edit/master/docs/user-guide/example.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -159,38 +149,94 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="library-of-functions">Library of functions</h1>
-<p>All material-independant values, universal constants and state equations are stored within the <code>hamopy/ham_library</code> file. In addition to constant properties such as the latent heat of evaporation, the universal gas constant and the thermal conductivity of air, the file includes 5 useful methods:</p>
-<ul>
-<li><code>p_sat(T)</code>: Water vapor saturation pressure (Pa)</li>
-<li><code>D_va(T)</code>: Water vapor diffusivity in air (m2/s)</li>
-<li><code>p_v(p_c, T)</code>: Water vapor pressure (Pa)</li>
-<li><code>HR(p_c, T)</code>: Relative humidity</li>
-<li><code>p_c(HR, T)</code>: Capillary pressure (Pa)</li>
-</ul>
-<p>The last three methods are equivalent formulations of the Clausius-Clapeyron equation. It is used to calculate the relative humidity from values of the capillary pressure, and inversely.</p>
-<p>Here is an example of use:</p>
-<pre><code>from hamopy import ham_library as ham
+                <p>This scipt simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.</p>
+<p>Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled <code>Time (s)</code> and <code>DeltaP</code>. This file is available in the <code>hamopy/benchmarks</code> folder</p>
+<pre><code>from hamopy.classes import Mesh, Boundary, Time
 
-ham.cp_liq
-ham.p_sat(280)
-ham.p_c(0.92, 299)
+# Meshing
+from hamopy.materials.hamstad import BM3
+
+mesh = Mesh(**{"materials"    : [BM3],
+           "sizes"        : [0.2],
+           "nbr_elements" : [40] })
+
+# Boundary conditions
+clim_file = 'BM3 climate.txt'
+
+clim1 = Boundary('Fourier',**{"file"      : clim_file,
+                          "time"      : "Time (s)",
+                          "T"         : 293.15,
+                          "HR"        : 0.7,
+                          "h_t"       : 10,
+                          "h_m"       : 2e-7,
+                          "P_air"     : "DeltaP"})
+
+clim2 = Boundary('Fourier',**{"T"         : 275.15,
+                          "HR"        : 0.8,
+                          "h_t"       : 10,
+                          "h_m"       : 7.38e-12 })
+clim = [clim1, clim2]
+
+# Initial conditions
+init = {'T'  : 293.15,
+    'HR' : 0.95}
+
+# Temporal discretisation
+time = Time('variable',**{"delta_t"  : 900,
+                      "t_max"    : 8640000,
+                      "iter_max" : 12,
+                      "delta_min": 1e-3,
+                      "delta_max": 900 } )
+
+if __name__ == "__main__":
+
+    import numpy  as np
+    import pandas as pd
+
+    # Simulation
+    from hamopy.algorithm import calcul
+    results = calcul(mesh, clim, init, time)
+
+    # Post-processing
+    from hamopy.postpro import evolution
+    data0 = pd.read_csv(clim_file, delimiter='\t')
+    t_out = np.array( data0['Time (s)'] )
+    x_out = [0.05, 0.1, 0.15, 0.17, 0.19]
+
+    from hamopy import ham_library as ham
+
+    Temperature     = np.column_stack([evolution(results, 'T', _, t_out) for _ in x_out])
+    Humidity        = np.column_stack([evolution(results, 'HR', _, t_out) for _ in x_out])
+    MoistureContent = BM3.w(ham.p_c(Humidity, Temperature), Temperature)
+    # Plotting results
+
+    import matplotlib.pylab as plt
+    from matplotlib import rc
+    rc("font", family="serif", size=12)
+
+    figsize(6, 8)
+
+    ax = plt.subplot(211)
+
+    plt.plot(t_plot / (24*3600), Temperature)
+    plt.xlabel('Time (days)')
+    plt.ylabel('Temperature (C)')
+    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+
+    ax = plt.subplot(212)
+
+    plt.plot(t_plot / (24*3600), MoistCont)
+    plt.xlabel('Time (days)')
+    plt.ylabel('Moisture content (kg/m3)')
+    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+
+    fig = plt.gcf()
+    fig.savefig('BM3_results.png', format='png', dpi = 300)
 </code></pre>
-<p>This script first returns the value of the liquid water specific heat, then the water vapor saturation pressure at 280 K, then the capillary pressure at 92 %RH and 299 K.</p>
-<p><a href="../..">Documentation main page</a></p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../post-processing/" class="btn btn-neutral float-right" title="Post-processing">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../simulation/" class="btn btn-neutral" title="Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -216,10 +262,6 @@ ham.p_c(0.92, 299)
           <a href="https://github.com/srouchier/hamopy/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../simulation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../post-processing/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

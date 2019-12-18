@@ -1,84 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    
     <url>
-     <loc>/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-    
-
-    
-        
     <url>
-     <loc>/user-guide/inputs/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/user-guide/materials/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/user-guide/boundary/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/user-guide/simulation/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/user-guide/library/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/user-guide/post-processing/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>/examples/Hamstad_BM3/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/examples/Hamstad_BM5/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
-    
-        
     <url>
-     <loc>/about/author/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
     <url>
-     <loc>/about/license/</loc>
-     <lastmod>2016-12-08</lastmod>
+     <loc>None</loc>
+     <lastmod>2019-12-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
-        
-    
-
 </urlset>

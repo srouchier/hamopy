@@ -13,18 +13,19 @@
 
   <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
   <script>
     // Current page data
     var mkdocs_page_name = "Hamstad BM3";
     var mkdocs_page_input_path = "examples/Hamstad_BM3.md";
-    var mkdocs_page_url = "/examples/Hamstad_BM3/";
+    var mkdocs_page_url = null;
   </script>
   
-  <script src="../../js/jquery-2.1.1.min.js"></script>
-  <script src="../../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -38,125 +39,94 @@
         <a href="../.." class="icon icon-home"> hamopy - Heat, Air and Moisture transfer in Python</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../..">Home</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Home</a>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">User guide</span>
     <ul class="subnav">
-    <li><span>User guide</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/inputs/">Input definition</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/materials/">Materials</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/boundary/">Boundary conditions</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/simulation/">Simulation</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/library/">Library</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../user-guide/post-processing/">Post-processing</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../user-guide/inputs/">Input definition</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/materials/">Materials</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/boundary/">Boundary conditions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/simulation/">Simulation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/library/">Library</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../user-guide/post-processing/">Post-processing</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Examples</span>
     <ul class="subnav">
-    <li><span>Examples</span></li>
+                <li class=" current">
+                    
+    <a class="current" href="./">Hamstad BM3</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#hamstad-bm3">Hamstad BM3</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#script">Script</a></li>
+        
+            <li><a class="toctree-l4" href="#results">Results</a></li>
+        
+        </ul>
+    
 
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Hamstad BM3</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#hamstad-bm3">Hamstad BM3</a></li>
-                
-                    <li><a class="toctree-l4" href="#script">Script</a></li>
-                
-                    <li><a class="toctree-l4" href="#results">Results</a></li>
-                
-            
-            </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../Hamstad_BM5/">Hamstad BM5</a>
-        
-    </li>
-
-        
     </ul>
-<li>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../Hamstad_BM5/">Hamstad BM5</a>
+                </li>
+    </ul>
+	    </li>
           
-            <li>
+            <li class="toctree-l1">
+		
+    <span class="caption-text">About</span>
     <ul class="subnav">
-    <li><span>About</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../about/author/">Author</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../about/license/">License</a>
-        
-    </li>
-
-        
+                <li class="">
+                    
+    <a class="" href="../../about/author/">Author</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../../about/license/">License</a>
+                </li>
     </ul>
-<li>
+	    </li>
           
         </ul>
       </div>
@@ -201,87 +171,73 @@
 <p>This script simulates the third exercise of the Hamstad benchmark package: transient heat and moisture transfer impacted by air flow through a lightweight wall.</p>
 <p>Note that the external air pressure fluctuates on one side of the domain, and that its values are read from a .txt file which has two columns labeled <code>Time (s)</code> and <code>DeltaP</code>. This file is available in the <code>hamopy/benchmarks</code> folder</p>
 <h2 id="script">Script</h2>
-<pre><code>from hamopy.classes import Mesh, Boundary, Time
+<pre><code>import numpy  as np
+import pandas as pd
+import matplotlib.pylab as plt
 
-# Meshing
+# All things necessary to run the simulation
+from hamopy import ham_library as ham
+from hamopy.classes import Mesh, Boundary, Time
+from hamopy.algorithm import calcul
+from hamopy.postpro import evolution
+
+# Choice of materials and geometry
 from hamopy.materials.hamstad import BM3
-
 mesh = Mesh(**{"materials"    : [BM3],
-           "sizes"        : [0.2],
-           "nbr_elements" : [40] })
+               "sizes"        : [0.2],
+               "nbr_elements" : [40] })
 
 # Boundary conditions
 clim_file = 'BM3 climate.txt'
-
 clim1 = Boundary('Fourier',**{"file"      : clim_file,
-                          "time"      : "Time (s)",
-                          "T"         : 293.15,
-                          "HR"        : 0.7,
-                          "h_t"       : 10,
-                          "h_m"       : 2e-7,
-                          "P_air"     : "DeltaP"})
+                              "time"      : "Time (s)",
+                              "T"         : 293.15,
+                              "HR"        : 0.7,
+                              "h_t"       : 10,
+                              "h_m"       : 2e-7,
+                              "P_air"     : "DeltaP"})
 
 clim2 = Boundary('Fourier',**{"T"         : 275.15,
-                          "HR"        : 0.8,
-                          "h_t"       : 10,
-                          "h_m"       : 7.38e-12 })
+                              "HR"        : 0.8,
+                              "h_t"       : 10,
+                              "h_m"       : 7.38e-12 })
 clim = [clim1, clim2]
 
 # Initial conditions
 init = {'T'  : 293.15,
-    'HR' : 0.95}
+        'HR' : 0.95}
 
-# Temporal discretisation
+# Time step control
 time = Time('variable',**{"delta_t"  : 900,
-                      "t_max"    : 8640000,
-                      "iter_max" : 12,
-                      "delta_min": 1e-3,
-                      "delta_max": 900 } )
+                          "t_max"    : 8640000,
+                          "iter_max" : 12,
+                          "delta_min": 1e-3,
+                          "delta_max": 900 } )
 
-if __name__ == "__main__":
+# Calculation
+results = calcul(mesh, clim, init, time)
 
-    import numpy  as np
-    import pandas as pd
+# Post processing: what time and coordinate scales we wish to display the results on
+data0 = pd.read_csv(clim_file, delimiter='\t')
+t_out = np.array( data0['Time (s)'] )
+x_out = [0.05, 0.1, 0.15, 0.17, 0.19]
 
-    # Simulation
-    from hamopy.algorithm import calcul
-    results = calcul(mesh, clim, init, time)
+# Use the evolution function to extract the temperature and humidity profiles
+Temperature = np.column_stack([evolution(results, 'T', _, t_out) for _ in x_out])
+Humidity = np.column_stack([evolution(results, 'HR', _, t_out) for _ in x_out])
+MoistureContent = BM3.w(ham.p_c(Humidity, Temperature), Temperature)
 
-    # Post-processing
-    from hamopy.postpro import evolution
-    data0 = pd.read_csv(clim_file, delimiter='\t')
-    t_out = np.array( data0['Time (s)'] )
-    x_out = [0.05, 0.1, 0.15, 0.17, 0.19]
-
-    from hamopy import ham_library as ham
-
-    Temperature     = np.column_stack([evolution(results, 'T', _, t_out) for _ in x_out])
-    Humidity        = np.column_stack([evolution(results, 'HR', _, t_out) for _ in x_out])
-    MoistureContent = BM3.w(ham.p_c(Humidity, Temperature), Temperature)
-    # Plotting results
-
-    import matplotlib.pylab as plt
-    from matplotlib import rc
-    rc("font", family="serif", size=12)
-
-    figsize(6, 8)
-
-    ax = plt.subplot(211)
-
-    plt.plot(t_plot / (24*3600), Temperature)
-    plt.xlabel('Time (days)')
-    plt.ylabel('Temperature (C)')
-    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
-
-    ax = plt.subplot(212)
-
-    plt.plot(t_plot / (24*3600), MoistCont)
-    plt.xlabel('Time (days)')
-    plt.ylabel('Moisture content (kg/m3)')
-    plt.legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
-
-    fig = plt.gcf()
-    fig.savefig('BM3_results.png', format='png', dpi = 300)
+# Plotting results
+fig, ax = plt.subplots(2, 1)
+ax[0].plot(t_out / (24 * 3600), Temperature)
+ax[0].set_xlabel('Time (days)')
+ax[0].set_ylabel('Temperature (C)')
+ax[0].legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+ax[1].plot(t_out / (24 * 3600), MoistureContent)
+ax[1].set_xlabel('Time (days)')
+ax[1].set_ylabel('Moisture content (kg/m3)')
+ax[1].legend(('x=0.05 m', 'x=0.1 m', 'x=0.15 m', 'x=0.17 m', 'x=0.19 m'))
+plt.show()
 </code></pre>
 <h2 id="results">Results</h2>
 <p><img alt="BM3 results" src="../BM3_results.png" /></p>
@@ -309,18 +265,18 @@ if __name__ == "__main__":
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-	  
+      
         </div>
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/srouchier/hamopy" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/srouchier/hamopy/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../user-guide/post-processing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
@@ -330,7 +286,9 @@ if __name__ == "__main__":
       
     </span>
 </div>
-    <script src="../../js/theme.js"></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
 
 </body>
 </html>
