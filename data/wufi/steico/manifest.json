@@ -1,0 +1,1340 @@
+{
+  "source_page": "https://www.steico.com/de/downloads/dokumente/technik-verarbeitung",
+  "archive_url": "https://www.steico.com/fileadmin/user_upload/importer/downloads/wufi_datenstze_als_xml_ab_wufi_pro_0/STEICO_WUFI-data-set_complete_EUR_de_i.zip",
+  "downloaded_on": "2026-09-29",
+  "archive": "steico-wufi-datasets.zip",
+  "archive_sha256": "d42d0e60d5ee70e2148c3620438b8a29b5c6e3af18f7ca907a27de98213d7c94",
+  "material_count": 19,
+  "materials": [
+    {
+      "name": "STEICOinstall",
+      "xml": "xml/STEICO_WUFI-data-set_install_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_install_EUR_de_i.pdf",
+      "xml_sha256": "e499b551e159cb148eed79d5b14561a87704f2060017dd8d84a86b60f2d4bf7c",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_install_EUR_de_i/STEICO_WUFI-data-set_install_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:24:52",
+      "database_id": "-125",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "aba29126659ac5cb1aee63dfdc0c041e14c2becdee67967beeb550a3452a686b"
+    },
+    {
+      "name": "STEICOisorel",
+      "xml": "xml/STEICO_WUFI-data-set_isorel_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_isorel_EUR_de_i.pdf",
+      "xml_sha256": "fef0d7890d98d857aeabecbd2dcfac10a67f76d5a3f203dadeed12e1a7756b25",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_isorel_EUR_de_i/STEICO_WUFI-data-set_isorel_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:26:42",
+      "database_id": "-126",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "97e6bdf1b1547d34b8ebf2ffedfdf3a3b78a6df2a73b988c0978b86f6870e120"
+    },
+    {
+      "name": "STEICOphaltex",
+      "xml": "xml/STEICO_WUFI-data-set_phaltex_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_phaltex_EUR_de_i.pdf",
+      "xml_sha256": "27d1470cc485b7d84ea1a388ba01be76e43749c7d86835a510e5c4f83f1ac158",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_phaltex_EUR_de_i/STEICO_WUFI-data-set_phaltex_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:27:31",
+      "database_id": "-127",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "e6886bc607617ded5388347920a37f4a2126fa0f7d0a8d35be7c9ccc313e40ab"
+    },
+    {
+      "name": "STEICOprotect H",
+      "xml": "xml/STEICO_WUFI-data-set_protect-H_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_protect-H_EUR_de_i.pdf",
+      "xml_sha256": "61f7c76431cb3e7f98e8f785b457f5479c6469bf2064531df8affd215307ddd1",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_protect-H_EUR_de_i/STEICO_WUFI-data-set_protect-H_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:29:29",
+      "database_id": "-128",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "66c7916ffc777a9e1a6737af0b7f96f918e8f55c64e62f0924e5fca7e9af78bf"
+    },
+    {
+      "name": "STEICOprotect H dry",
+      "xml": "xml/STEICO_WUFI-data-set_protect-H-dry_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_protect-H-dry_EUR_de_i.pdf",
+      "xml_sha256": "30e6bd01288d85a66c9c3917bd3918762d9588e159df45ce2448f024099c2e49",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_protect-H-dry_EUR_de_i/STEICO_WUFI-data-set_protect-H-dry_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:32:31",
+      "database_id": "-129",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "0a8ccb1a9b71e17202c052a059877746bbdebaceb46d8afbe4402b578cf34d4d"
+    },
+    {
+      "name": "STEICOprotect L dry",
+      "xml": "xml/STEICO_WUFI-data-set_protect-L-dry_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_protect-L-dry_EUR_de_i.pdf",
+      "xml_sha256": "1cf5037f8b3b38fdc6414eb071fbf58aa394a5aad81b082a730d565dbaaa78e9",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_protect-L-dry_EUR_de_i/STEICO_WUFI-data-set_protect-L-dry_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:35:40",
+      "database_id": "-130",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "bb4d8c44f57dabd608581b1dcdc7dfac33e36554c6e0a8c4c7bcd86352487218"
+    },
+    {
+      "name": "STEICOprotect M",
+      "xml": "xml/STEICO_WUFI-data-set_protect-M_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_protect-M_EUR_de_i.pdf",
+      "xml_sha256": "067a1c79ab328143ef290a43bcbf2e167952b09ff1884fe1eef9847f96de4fba",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_protect-M_EUR_de_i/STEICO_WUFI-data-set_protect-M_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:37:24",
+      "database_id": "-131",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "54ddade7ee1e365f7e49bf26c263cabd8e3ab1fa7cff51f78455f7d346513c7a"
+    },
+    {
+      "name": "STEICOroof dry",
+      "xml": "xml/STEICO_WUFI-data-set_roof-dry_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_roof-dry_EUR_de_i.pdf",
+      "xml_sha256": "a427d231297fff90a0e282f4518cb64527c9a9505b89d722d84d4b9b50c42d26",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_roof-dry_EUR_de_i/STEICO_WUFI-data-set_roof-dry_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:41:06",
+      "database_id": "-133",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "7fecbb1e181b3d493eb7362855452572e52c07238f466e9cbeb33c5005e6a48e"
+    },
+    {
+      "name": "STEICOsafe (120-160mm)",
+      "xml": "xml/STEICO_WUFI-data-set_safe-120-160mm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_safe-120-160mm_EUR_de_i.pdf",
+      "xml_sha256": "0ad84678e0d3bf78c9be3b7cf76a6c753082e1c51af0a0904dee810bbbb7d831",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_safe-120-160mm_EUR_de_i/STEICO_WUFI-data-set_safe-120-160mm_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:46:41",
+      "database_id": "-134",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "102ec387186dbf4e68a8dbf1721d20ad8b54189e6bb60ae32a79820c11230b9a"
+    },
+    {
+      "name": "STEICOsafe (40mm)",
+      "xml": "xml/STEICO_WUFI-data-set_safe-40mm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_safe-40mm_EUR_de_i.pdf",
+      "xml_sha256": "c197db6f89fb20fe4888fb38caef1ead5953e247c1f0f05228d3d85597f98a77",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_safe-40mm_EUR_de_i/STEICO_WUFI-data-set_safe-40mm_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:53:19",
+      "database_id": "-135",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "910164c13aa5f2cdd6169959a7698dfc76727f9bac713b5878a77b3f21402f56"
+    },
+    {
+      "name": "STEICOsafe (60-100mm)",
+      "xml": "xml/STEICO_WUFI-data-set_safe-60-100mm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_safe-60-100mm_EUR_de_i.pdf",
+      "xml_sha256": "2437f486dd4bacf3f8be96dd8f5b65e7f2cf3f15b318a8d43a2ef09c7cc1aad6",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_safe-60-100mm_EUR_de_i/STEICO_WUFI-data-set_safe-60-100mm_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:54:30",
+      "database_id": "-136",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "c8f542a0bf7818be34e92617f58f71410f519abc662abf49a31546b097bea10e"
+    },
+    {
+      "name": "STEICOspecial dry",
+      "xml": "xml/STEICO_WUFI-data-set_special-dry_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_special-dry_EUR_de_i.pdf",
+      "xml_sha256": "7293cbcbbab77278718a48a4a9c0835c107389fe922c3ae847bb876bf7b85ac4",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_special-dry_EUR_de_i/STEICO_WUFI-data-set_special-dry_EUR_de_i.xml",
+      "database_date": "2023-01-12 10:56:44",
+      "database_id": "-137",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "8b5c23eb2ca249a907d595f766532361b9e7a083067925fc20453c0272f48f01"
+    },
+    {
+      "name": "STEICOtherm",
+      "xml": "xml/STEICO_WUFI-data-set_therm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_therm_EUR_de_i.pdf",
+      "xml_sha256": "1337ece5b75a6df950f0ae868e77c7533a86783dc08faf1bc2bd6f6085b4e31e",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_therm_EUR_de_i/STEICO_WUFI-data-set_therm_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:02:04",
+      "database_id": "-139",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "ddd1bfadf735694b9bb8ea9056b75bb31675ecd215b2915d003c3ed86e4709ae"
+    },
+    {
+      "name": "STEICOtherm SD",
+      "xml": "xml/STEICO_WUFI-data-set_therm-SD_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_therm-SD_EUR_de_i.pdf",
+      "xml_sha256": "1dde80eb582b86b279f38f3d21cd74be9eaec97aa78ae745317b89d5edde1294",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_therm-SD_EUR_de_i/STEICO_WUFI-data-set_therm-SD_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:05:34",
+      "database_id": "-141",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "9ed98ac6d683b2f69cadee1eb38f6920fcfdca0174418650ab16e6d1eb63bd30"
+    },
+    {
+      "name": "STEICOtherm dry",
+      "xml": "xml/STEICO_WUFI-data-set_therm-dry_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_therm-dry_EUR_de_i.pdf",
+      "xml_sha256": "644be0b9486ffc69fe180b971ca75ec8109bd941724d997596c84d1e1ab6153b",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_therm-dry_EUR_de_i/STEICO_WUFI-data-set_therm-dry_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:04:42",
+      "database_id": "-140",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "55e21ca53ad1b63415fa3a6dceb4de96e257f2e55a1e3cea64ac489605dfddb8"
+    },
+    {
+      "name": "STEICOtop",
+      "xml": "xml/STEICO_WUFI-data-set_top_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_top_EUR_de_i.pdf",
+      "xml_sha256": "b371388d28f2c160ff5b1d0eef520fe83cabc3dfeb13fbf3a3dcb9d3135d39a6",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_top_EUR_de_i/STEICO_WUFI-data-set_top_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:06:14",
+      "database_id": "-142",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "33b78f1e5f5032c97c6d464a35bbad028e7cc259ba95ee3c75ce41b43c6e7b1a"
+    },
+    {
+      "name": "STEICOuniversal",
+      "xml": "xml/STEICO_WUFI-data-set_universal_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_universal_EUR_de_i.pdf",
+      "xml_sha256": "17404d636a4480dd741cd40d4010cea850e19dfd0049ad763dcb0d1b47fdd865",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_universal_EUR_de_i/STEICO_WUFI-data-set_universal_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:07:36",
+      "database_id": "-143",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "5811752d10680bcf50632c5fc5751d6d7217092d2e1328618df9cc886b0fb676"
+    },
+    {
+      "name": "STEICOuniversal dry (35mm)",
+      "xml": "xml/STEICO_WUFI-data-set_universal-dry-35mm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_universal-dry-35mm_EUR_de_i.pdf",
+      "xml_sha256": "a0359e8822c241004cdc1844bbc50d690decf3dfe1323119762bd19bf2466fa5",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_universal-dry-35mm_EUR_de_i/STEICO_WUFI-data-set_universal-dry-35mm_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:09:53",
+      "database_id": "-144",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "bfef87098031d4441dc4d0810c8898617f8f6fd3a41e1e9fe0056224e9659557"
+    },
+    {
+      "name": "STEICOuniversal dry (60-100mm)",
+      "xml": "xml/STEICO_WUFI-data-set_universal-dry-40-100mm_EUR_de_i.xml",
+      "pdf": "pdf/STEICO_WUFI-data-set_universal-dry-40-100mm_EUR_de_i.pdf",
+      "xml_sha256": "31a43eeb3e7b0ff0b84cc0696700165702b430fcce3cae8d743c7812bfcc07db",
+      "archive_member": "STEICO_WUFI-data-set_complete_EUR_de_i/STEICO_WUFI-data-set_universal-dry-40-100mm_EUR_de_i/STEICO_WUFI-data-set_universal-dry-40-100mm_EUR_de_i.xml",
+      "database_date": "2023-01-12 11:11:00",
+      "database_id": "-145",
+      "material_version": "2",
+      "unit_system": "0",
+      "functions": [
+        {
+          "id": "1",
+          "name": "Feuchtespeicherfunktion",
+          "generated": false,
+          "point_count": 12,
+          "x_unit": " - ",
+          "y_unit": "kg/m³"
+        },
+        {
+          "id": "2",
+          "name": "Flüssigtransportkoeffizient, Saugen",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "3",
+          "name": "Flüssigtransportkoeffizient, Weiterverteilung",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "m²/s"
+        },
+        {
+          "id": "4",
+          "name": "Wärmeleitfähigkeit, feuchteabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "kg/m³",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "5",
+          "name": "Wasserdampfdiffusionswiderstandszahl, feuchteabhängig",
+          "generated": false,
+          "point_count": 1,
+          "x_unit": " - ",
+          "y_unit": " - "
+        },
+        {
+          "id": "6",
+          "name": "Wärmeleitfähigkeit, temperaturabhängig",
+          "generated": true,
+          "point_count": 1,
+          "x_unit": "°C",
+          "y_unit": "W/(m K)"
+        },
+        {
+          "id": "7",
+          "name": "Enthalpie, temperaturabhängig",
+          "generated": false,
+          "point_count": 0,
+          "x_unit": "°C",
+          "y_unit": "J/kg"
+        }
+      ],
+      "pdf_sha256": "78e36b5dd2abb89caf57a629051e4a25655b0bf070b31fd0258ed2cd1362496b"
+    }
+  ]
+}

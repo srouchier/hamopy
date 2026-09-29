@@ -56,3 +56,23 @@ wood_fibre.set_perm_vapor('interp', **{"HR" : [0.25, 0.75],
                                        "dp" : [3.75e-11, 6.59e-11] } )
 
 wood_fibre.set_perm_air(4.16e-13)
+
+#####################
+### STEICOinternal ###
+#####################
+
+# STEICO technical data sheet, GBR/IRL, version 3, 2026-09-21, page 1.
+# https://www.steico.com/tds_steicointernal_gbr-irl_en
+# Retrieved 2026-09-29. Density: kg/m3; capacity: J/(kg.K).
+steico_internal = Material('steico_internal', rho = 160., cp = 2100.)
+
+# Declared conductivity [W/(m.K)], treated as constant.
+steico_internal.set_conduc(lambda_0 = 0.038)
+
+# Constant vapour diffusion resistance factor; no humidity dependence supplied.
+steico_internal.set_perm_vapor('interp_mu', HR = [0., 1.], MU = [5., 5.])
+
+# No sorption or liquid-transport curves are supplied by the data sheet.
+# Add measured curves before coupled HAM use; see docs/user-guide/materials.md.
+# Liquid and air transport retain Hamopy's disabled defaults (not measurements).
+# The declared airflow resistivity is only a lower bound, not a permeability.

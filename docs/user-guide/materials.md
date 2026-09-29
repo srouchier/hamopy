@@ -19,6 +19,52 @@ This page tells you how to
 * use its properties once they have been registered,
 * modify a material in an existing mesh.
 
+## STEICOinternal
+
+The standard library includes the STEICOinternal wood fibre internal insulation
+board:
+
+```python
+from hamopy.materials.standard import steico_internal
+```
+
+Its properties come from the manufacturer's
+[technical data sheet (PDF)](https://www.steico.com/fileadmin/user_upload/importer/downloads/40281de298de2e31019976a323500188/STEICO_technical-data-sheet_internal_GBR_en_i.pdf),
+GBR/IRL version 3, dated 2026-09-21, page 1 (accessed 2026-09-29).
+The [current datasheet](https://www.steico.com/tds_steicointernal_gbr-irl_en)
+is also available from STEICO.
+
+| Property | Value |
+| --- | --- |
+| Density | Approximately 160 kg/m³ |
+| Specific heat capacity | 2100 J/(kg·K) |
+| Declared thermal conductivity | 0.038 W/(m·K) |
+| Water vapour diffusion resistance factor µ | 5 |
+
+Conductivity and heat capacity are modelled as constants. Vapour permeability
+uses `interp_mu` with constant µ = 5 across relative humidity; Hamopy applies
+its usual temperature conversion from µ to permeability.
+
+**This is a datasheet-based entry for heat-only use, not a complete coupled HAM
+material.** The datasheet does not supply a sorption isotherm, liquid permeability
+curve, or moisture/temperature conductivity coefficients. No substitute curves
+are assumed. Liquid and air transport retain Hamopy's disabled defaults; these
+are not measured zero permeabilities. The reported airflow resistivity is only
+a lower bound and is not registered as an exact air permeability.
+
+For example, a 60 mm board can be used with `hamopy.algorithm.calcul_thermo`:
+
+```python
+from hamopy.classes import Mesh
+
+mesh = Mesh(materials=[steico_internal], sizes=[0.06], nbr_elements=[12])
+```
+
+Before using this entry in a coupled moisture simulation, make a `deepcopy` and
+define a measured sorption isotherm with `set_isotherm`, together with suitable
+liquid transport data using `set_perm_liquid`. Calling moisture storage methods
+on the supplied entry fails because no isotherm is defined.
+
 ## Material definition
 
 ### Instantiation

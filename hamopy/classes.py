@@ -131,7 +131,8 @@ class Material(object):
         The capillary pressure p_c and the temperature T are optional arguments
         """
         
-        w = self.w(p_c)
+        # Moisture-independent conductivity needs no sorption isotherm.
+        w = self.w(p_c) if self.lambda_m != 0 else np.zeros(np.shape(p_c))
         return self.lambda_0 + w/1000.*self.lambda_m + self.lambda_t * (T-273.15)
     
     def set_isotherm(self, method, **kwargs):   
