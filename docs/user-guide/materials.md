@@ -65,6 +65,82 @@ define a measured sorption isotherm with `set_isotherm`, together with suitable
 liquid transport data using `set_perm_liquid`. Calling moisture storage methods
 on the supplied entry fails because no isotherm is defined.
 
+## STEICO materials from WUFI XML
+
+The `hamopy.materials.steico` catalog builds 19 coupled heat/moisture materials
+from STEICO's local XML files. First [download and verify the manufacturer
+bundle](../../data/wufi/steico/README.md). With the files in the source checkout's
+`data/wufi/steico/xml` directory, use a named material directly:
+
+```python
+from hamopy.classes import Mesh
+from hamopy.materials.steico import steico_therm
+
+mesh = Mesh(materials=[steico_therm], sizes=[0.06], nbr_elements=[12])
+```
+
+Load the whole library or select a liquid-transport mode:
+
+```python
+from hamopy.materials.steico import load_material, load_materials
+
+materials = load_materials()  # dict of 19 independent Material objects
+board = materials['steico_protect_h_dry']
+absorption_board = load_material('steico_therm', liquid_transport='suction')
+
+# For an installed package or XML files stored elsewhere:
+materials = load_materials('/path/to/steico/xml')
+```
+
+Alternatively set `HAMOPY_STEICO_XML_DIR` to that directory before using named
+imports. `MATERIAL_FILES` lists all identifiers and their source filenames.
+Every load/import creates a fresh material. Imports perform no downloads; missing
+files produce an error with setup instructions. The manufacturer XMLs remain
+local and are excluded from version control.
+
+The importer preserves every sorption point using monotone cubic interpolation
+(PCHIP). `c_w` is the derivative of that interpolant with respect to capillary
+pressure. Density, dry heat capacity, constant vapour resistance, and
+conductivity coefficients come from the XML. The conductivity conversion is
+`lambda = lambda10 * (1 + b*w/rho) + temperature_slope*(T - 283.15)`, where `b`
+is the XML supplement in % per mass-percent and `T` is kelvin. This uses Hamopy's
+additive thermal model and reference-temperature moisture properties.
+
+The zero entries in the generated liquid functions are placeholders. Following
+the [WUFI help, pages 31–34](https://wufi.de/download/WUFI41_help_e.pdf), the
+importer reconstructs positive coefficients at the reference moisture `w80` and
+free saturation `wf` using `Dws(w) = 3.8*(A/wf)**2 * 1000**(w/wf - 1)`.
+It interpolates logarithmically between those anchors, uses zero transport below
+`w80`, and holds the final coefficient above `wf`. Redistribution shares the
+`w80` coefficient and divides the `wf` coefficient by the XML drying factor.
+Conversion to Hamopy's pressure-based permeability is `k_l = D_w * c_w`.
+
+**The default liquid mode is `redistribution`.** Use `suction` when modelling
+absorption. Hamopy uses the selected curve throughout a simulation and does not
+automatically switch it with rain. These objects support Hamopy's coupled solver;
+they do not reproduce every WUFI solver convention. In particular, PCHIP sorption
+interpolation is a Hamopy modelling choice. Air transport retains its disabled
+default because these XMLs provide no air-permeability measurement.
+
+`material.source` retains the original name, source path and SHA-256, database
+version/date, scalar values, and the complete XML `Info` text describing the
+source models and their limitations. These source curves are not all measured
+data. **STEICOinternal is absent from this bundle** and retains its separate
+datasheet-based, heat-only entry above.
+
+To load another file with the same supported XML profile:
+
+```python
+from hamopy.materials.wufi import load_wufi_material
+
+material = load_wufi_material('/path/to/material.xml')
+```
+
+The reader accepts SI version-2 records with tabulated sorption, constant vapour
+resistance and dry heat capacity, and generation-mode-0 liquid and conductivity
+functions. Unsupported models, units, inconsistent tables, and missing properties
+raise errors rather than producing an incomplete simulation material.
+
 ## Material definition
 
 ### Instantiation
@@ -110,7 +186,7 @@ The default value for `lambda_m` and `lambda_t` is 0.
 
 ### set_isotherm()
 
-There are currently two methods for defining the sorption isotherm:
+The following methods can define the sorption isotherm:
 
 Either a 3rd degree polynomial interpolation, fitted on a list of measurement points:
 
@@ -125,6 +201,18 @@ The second method for defining the sorption isotherm is the van Genuchten mono- 
 		                                    "l"     : [0.41, 0.59],
 		                                    "alpha" : [6.12e-7, 1.22e-6],
 		                                    "m"     : [0.5981, 0.5816] })
+
+For a full moisture-storage table, use shape-preserving monotone interpolation:
+
+```python
+material.set_isotherm('tabulated', HR=[0, 0.5, 0.8, 1], W=[0, 5, 10, 100])
+```
+
+`HR` must increase strictly from 0 to 1, and `W` must be finite, nondecreasing,
+and start at zero. The final value is the saturation moisture content. This
+method reproduces the supplied points without overshoot and computes moisture
+capacity from the interpolant's derivative. Positive capillary pressures are
+clamped to saturation, with zero capacity beyond that endpoint.
 
 ### set_perm_vapor()
 

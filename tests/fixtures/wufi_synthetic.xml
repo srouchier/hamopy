@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Synthetic data written for importer tests, not a manufacturer's dataset. -->
+<WUFIMaterial UnitSystem="0">
+  <Material version="2" dbID="-1">
+    <Name>Synthetic insulation</Name>
+    <Info>Artificial material for numerical tests.</Info>
+    <DateDB>2026-09-30 00:00:00</DateDB>
+    <Scalars Count="12">
+      <Scalar id="1" unit="kg/m³" value="200,0" />
+      <Scalar id="2" unit="m³/m³" value="0,8" />
+      <Scalar id="3" unit="J/kgK" value="1500" />
+      <Scalar id="4" unit="W/mK" value="0,05" />
+      <Scalar id="5" unit=" - " value="4" />
+      <Scalar id="6" unit="kg/m³" value="10" />
+      <Scalar id="9" unit="kg/m³" value="100" />
+      <Scalar id="10" unit="kg/m²√s" value="0,1" />
+      <Scalar id="11" unit=" - " value="10" />
+      <Scalar id="12" unit="%/M.-%" value="2" />
+      <Scalar id="13" unit="kg/m³" value="10" />
+      <Scalar id="14" unit="W/mK²" value="0,001" />
+    </Scalars>
+    <Functions>
+      <Function id="1" version="1">
+        <Generated>FALSE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="4" version="2" xunit=" - " yunit="kg/m³">
+          <Item Index="1" x="0" y="0" />
+          <Item Index="2" x="0,5" y="5" />
+          <Item Index="3" x="0,8" y="10" />
+          <Item Index="4" x="1" y="100" />
+        </Items>
+      </Function>
+      <Function id="2" version="1">
+        <Generated>TRUE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="1" version="2" xunit="kg/m³" yunit="m²/s">
+          <Item Index="1" x="0" y="0" />
+        </Items>
+      </Function>
+      <Function id="3" version="1">
+        <Generated>TRUE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="1" version="2" xunit="kg/m³" yunit="m²/s">
+          <Item Index="1" x="0" y="0" />
+        </Items>
+      </Function>
+      <Function id="4" version="1">
+        <Generated>TRUE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="1" version="2" xunit="kg/m³" yunit="W/(m K)">
+          <Item Index="1" x="0" y="0,05" />
+        </Items>
+      </Function>
+      <Function id="5" version="1">
+        <Generated>FALSE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="1" version="2" xunit=" - " yunit=" - ">
+          <Item Index="1" x="0" y="4" />
+        </Items>
+      </Function>
+      <Function id="6" version="1">
+        <Generated>TRUE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="1" version="2" xunit="°C" yunit="W/(m K)">
+          <Item Index="1" x="10" y="0,05" />
+        </Items>
+      </Function>
+      <Function id="7" version="1">
+        <Generated>FALSE</Generated><GenerationMode>0</GenerationMode>
+        <Items Count="0" version="2" xunit="°C" yunit="J/kg" />
+      </Function>
+    </Functions>
+  </Material>
+</WUFIMaterial>

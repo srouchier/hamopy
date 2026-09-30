@@ -50,25 +50,27 @@ before updating the manifest.
 
 ## Materials
 
-- STEICOinstall
-- STEICOisorel
-- STEICOphaltex
-- STEICOprotect H
-- STEICOprotect H dry
-- STEICOprotect L dry
-- STEICOprotect M
-- STEICOroof dry
-- STEICOsafe (120-160mm)
-- STEICOsafe (40mm)
-- STEICOsafe (60-100mm)
-- STEICOspecial dry
-- STEICOtherm
-- STEICOtherm dry
-- STEICOtherm SD
-- STEICOtop
-- STEICOuniversal
-- STEICOuniversal dry (35mm)
-- STEICOuniversal dry (60-100mm)
+| XML material name | Python library identifier |
+| --- | --- |
+| STEICOinstall | `steico_install` |
+| STEICOisorel | `steico_isorel` |
+| STEICOphaltex | `steico_phaltex` |
+| STEICOprotect H | `steico_protect_h` |
+| STEICOprotect H dry | `steico_protect_h_dry` |
+| STEICOprotect L dry | `steico_protect_l_dry` |
+| STEICOprotect M | `steico_protect_m` |
+| STEICOroof dry | `steico_roof_dry` |
+| STEICOsafe (120-160mm) | `steico_safe_120_160mm` |
+| STEICOsafe (40mm) | `steico_safe_40mm` |
+| STEICOsafe (60-100mm) | `steico_safe_60_100mm` |
+| STEICOspecial dry | `steico_special_dry` |
+| STEICOtherm | `steico_therm` |
+| STEICOtherm dry | `steico_therm_dry` |
+| STEICOtherm SD | `steico_therm_sd` |
+| STEICOtop | `steico_top` |
+| STEICOuniversal | `steico_universal` |
+| STEICOuniversal dry (35mm) | `steico_universal_dry_35mm` |
+| STEICOuniversal dry (60-100mm) | `steico_universal_dry_40_100mm` |
 
 Names above are taken from the XML records. The last record's filename and
 website listing say 40-100mm, while its internal name says 60-100mm; both are
@@ -77,23 +79,48 @@ preserved in the source files and index.
 **STEICOinternal is not present.** This is STEICO's published bundle, not the
 complete material database bundled with WUFI.
 
-## Import notes
+## Use in Hamopy
 
-These are source files for a future importer; downloading them does not register
-them as Hamopy simulation materials.
+After downloading, all 19 records can be used as coupled simulation materials:
+
+```python
+from hamopy.materials.steico import steico_therm, load_materials
+
+materials = load_materials()  # keyed by the identifiers above
+```
+
+For XMLs outside the source checkout, pass their folder to `load_materials` or
+set `HAMOPY_STEICO_XML_DIR` before using named imports. See the
+[material guide](../../../docs/user-guide/materials.md#steico-materials-from-wufi-xml)
+for liquid-transport selection, conversion equations and supported XML models.
+
+## Import notes
 
 - All 19 XML files parse successfully and have a matching PDF description.
 - Numeric values use decimal commas, and source units are recorded in the XML.
-- Each material contains a 12-point moisture-storage table.
+- Each material contains a 12-point moisture-storage table. The importer keeps
+  all points and uses monotone interpolation with an analytic moisture capacity.
 - Liquid absorption and redistribution functions are marked `Generated=TRUE`
   and contain a single zero placeholder. Their actual curves must be generated
-  from the associated parameters, not read as zero liquid transport.
+  from the associated parameters. The importer reconstructs these curves and
+  converts diffusivity to pressure-based permeability. Redistribution is the
+  default; suction can be selected explicitly.
 - Moisture- and temperature-dependent conductivity functions also use generated
-  definitions. Vapour resistance has a single constant point.
+  definitions. The importer converts their reference temperature and moisture
+  supplement. Vapour resistance has a single constant point.
 - The XML `Info` fields retain the source's provenance and modelling limitations.
-  Preserve these when converting the data. Download availability alone does not
-  establish redistribution rights; no redistribution licence was identified in
-  the archive.
+  These are retained in each material's `source` metadata. Download availability
+  alone does not establish redistribution rights; no redistribution licence was
+  identified in the archive.
 
 WUFI's [XML import instructions](https://wufi.de/en/service/downloads/) are listed
 under **Material files**.
+
+## Verification
+
+Run `python -m unittest discover -s tests -v` from the repository root. Synthetic
+fixtures test the conversion without downloading manufacturer data. With all 19
+local XMLs present, additional tests check every sorption table and run one-hour
+coupled wetting and drying simulations for each material. These check numerical
+integration and transport direction, not agreement with measured performance or
+WUFI simulation results.

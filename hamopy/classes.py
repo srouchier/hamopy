@@ -24,7 +24,7 @@ import pandas as pd
 from . import ham_library as ham
 
 from pylab             import sqrt
-from scipy.interpolate import interp1d
+from scipy.interpolate import interp1d, PchipInterpolator
 from scipy.interpolate import UnivariateSpline
 from scipy.sparse      import coo_matrix, hstack, vstack
 
@@ -140,13 +140,29 @@ class Material(object):
         Register the sorption isotherm [kg/m3]
         
         :method: String indicating how the isotherm is defined. Available
-                 methods are 'vangenuchten' and 'polynomial'
+                 methods are 'vangenuchten', 'polynomial', 'slope' and
+                 'tabulated'. The latter takes monotone HR and W arrays,
+                 including dry (0, 0) and saturated (1, W_sat) endpoints.
         :kwargs: Dictionary of parameters for the definition of the profile.
                  See the wiki of the hamopy project for instructions regarding
                  the definition of this object.
         """
         
-        self.w_method = method        
+        if method == 'tabulated':
+            humidity = np.asarray(kwargs['HR'], dtype=float)
+            moisture = np.asarray(kwargs['W'], dtype=float)
+            if (humidity.ndim != 1 or moisture.shape != humidity.shape or
+                    humidity.size < 2 or not np.all(np.isfinite(humidity)) or
+                    not np.all(np.isfinite(moisture)) or
+                    humidity[0] != 0 or humidity[-1] != 1 or moisture[0] != 0 or
+                    np.any(np.diff(humidity) <= 0) or np.any(np.diff(moisture) < 0)):
+                raise ValueError('Tabulated sorption requires increasing HR from 0 to 1 '
+                                 'and nondecreasing finite W starting at 0.')
+            self.w_table = PchipInterpolator(humidity, moisture, extrapolate=False)
+            self.w_table_derivative = self.w_table.derivative()
+            self.w_sat = moisture[-1]
+
+        self.w_method = method
         
         if method == 'vangenuchten':
             # Mono- or multimodal van Genuchten law
@@ -194,6 +210,10 @@ class Material(object):
         elif self.w_method == 'slope':
             
             w = np.polyval(np.polyint(self.xi_poly), ham.HR(p_c, T))
+
+        elif self.w_method == 'tabulated':
+            # Limit positive pressures to saturation before exponentiation.
+            w = self.w_table(ham.HR(np.minimum(p_c, 0), T))
             
         return w
         
@@ -226,6 +246,11 @@ class Material(object):
             HR  = ham.HR(p_c, T)
             xi  = np.polyval(self.xi_poly, HR)
             c_w = xi * HR / (ham.rho_liq*ham.Rv*T)
+
+        elif self.w_method == 'tabulated':
+            HR = ham.HR(np.minimum(p_c, 0), T)
+            c_w = self.w_table_derivative(HR) * HR / (ham.rho_liq*ham.Rv*T)
+            c_w = np.where(np.asarray(p_c) <= 0, c_w, 0.)
             
         return c_w
     
@@ -686,7 +711,7 @@ class Mesh(object):
 
             # Capacity and conductivity
             c_hh[mask] = m.cp(GL_T[mask]) * m.rho
-            k_hh[mask] = m.conduc(GL_T[mask])
+            k_hh[mask] = m.conduc(T=GL_T[mask])
         
         # Numerical integration of the elementary matrices
         E = np.sum(self.nbr_elem)
